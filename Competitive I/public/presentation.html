@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part 2: Competitive Intelligence Pipeline - Executive Presentation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+      overflow: hidden;
+    }
+    
+    .slide {
+      display: none;
+      animation: fadeIn 0.7s ease-in-out;
+    }
+    
+    .slide.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .slide-container {
+      min-height: calc(100vh - 120px);
+      padding: 3rem 2rem;
+    }
+    
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(1, 118, 211, 0.1);
+      border: 2px solid rgba(1, 118, 211, 0.3);
+      border-radius: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0176d3;
+    }
+    
+    .nav-button {
+      padding: 0.625rem 1.25rem;
+      border-radius: 0.5rem;
+      border: 2px solid #0176d3;
+      background: white;
+      color: #0176d3;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .nav-button:hover:not(:disabled) {
+      background: #0176d3;
+      color: white;
+    }
+    
+    .nav-button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    
+    .dot {
+      width: 0.625rem;
+      height: 0.625rem;
+      border-radius: 50%;
+      background: #cbd5e1;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .dot.active {
+      background: #0176d3;
+      transform: scale(1.3);
+    }
+    
+    .dot:hover {
+      background: #0176d3;
+    }
+    
+    .card {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .icon-box {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+    }
+    
+    @media print {
+      body {
+        background: white;
+      }
+      .slide {
+        display: block !important;
+        page-break-after: always;
+        min-height: 100vh;
+        padding: 2rem;
+      }
+      footer {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-slate-100">
+
+  <!-- Slide 1: Introduction -->
+  <div class="slide active" id="slide-0">
+    <div class="slide-container max-w-7xl mx-auto">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <div class="badge">
+            <span class="inline-block w-2 h-2 rounded-full bg-[#0176d3]"></span>
+            Part 2 · Competitive Intelligence Pipeline
+          </div>
+          <h1 class="text-6xl font-bold text-slate-900 leading-tight">
+            Turning Competitive Loss Data<br/>
+            Into <span class="text-[#0176d3]">Revenue Protection.</span>
+          </h1>
+          <p class="text-xl text-slate-600 max-w-3xl leading-relaxed">
+            A pipeline that transforms historical "we lost to Competitor X" reports into predictive, 
+            actionable intelligence delivered 90 days before renewal—with account names, usage signals, 
+            and recommended CS actions.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6 mt-12">
+          <div class="card border-t-4 border-t-[#0176d3]">
+            <div class="icon-box bg-blue-50 border-2 border-blue-200 text-[#0176d3] mb-4">📊</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">The Problem</h3>
+            <p class="text-sm text-slate-600">$4.2M ARR at risk from competitive churn—but no way to identify which accounts need intervention until after the deal is lost.</p>
+          </div>
+
+          <div class="card border-t-4 border-t-amber-500">
+            <div class="icon-box bg-amber-50 border-2 border-amber-200 text-amber-600 mb-4">🔧</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">The Solution</h3>
+            <p class="text-sm text-slate-600">A data pipeline that joins Salesforce opportunity loss data with usage metrics to create a 90-day early warning system.</p>
+          </div>
+
+          <div class="card border-t-4 border-t-green-600">
+            <div class="icon-box bg-green-50 border-2 border-green-200 text-green-700 mb-4">📈</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">The Impact</h3>
+            <p class="text-sm text-slate-600">~23% projected reduction in competitive churn by enabling proactive CS engagement on 340 at-risk accounts.</p>
+          </div>
+        </div>
+
+        <div class="card bg-blue-50 border-2 border-blue-200 text-center">
+          <p class="text-base text-slate-700 leading-relaxed">
+            <strong class="text-slate-900">Same architecture as Part 1:</strong> Detect signal → clean → enrich → deliver. 
+            Different domain, same principle: <strong class="text-[#0176d3]">data that drives action before it's too late.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2: The Problem -->
+  <div class="slide" id="slide-1">
+    <div class="slide-container max-w-7xl mx-auto">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <div class="badge" style="background: rgba(194, 57, 52, 0.1); border-color: rgba(194, 57, 52, 0.3); color: #c23934;">
+            The Core Problem
+          </div>
+          <h2 class="text-5xl font-bold text-slate-900 leading-tight">
+            We Know <span class="text-red-600">Who We Lost To.</span><br/>
+            We Don't Know <span class="text-[#0176d3]">Who's Next.</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
+          <div class="card">
+            <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+              <span class="text-3xl">📉</span>
+              The Symptom
+            </h3>
+            <div class="space-y-4 text-slate-700">
+              <div class="flex items-start gap-3">
+                <span class="text-red-600 font-bold text-lg mt-1">•</span>
+                <div>
+                  <strong class="text-slate-900">108 deals lost to "Rival Analytics Co." last quarter</strong>
+                  <p class="text-sm text-slate-600 mt-1">$4.2M ARR walked out the door to competitors</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-red-600 font-bold text-lg mt-1">•</span>
+                <div>
+                  <strong class="text-slate-900">Salesforce tracks competitor names in loss reasons</strong>
+                  <p class="text-sm text-slate-600 mt-1">But it's retrospective—we find out after renewal fails</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-red-600 font-bold text-lg mt-1">•</span>
+                <div>
+                  <strong class="text-slate-900">No usage context in the loss report</strong>
+                  <p class="text-sm text-slate-600 mt-1">Was it price? Was it low engagement? We're guessing</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+              <span class="text-3xl">💡</span>
+              The Insight
+            </h3>
+            <div class="space-y-4 text-slate-700">
+              <div class="flex items-start gap-3">
+                <span class="text-[#2e844a] font-bold text-lg mt-1">✓</span>
+                <div>
+                  <strong class="text-slate-900">We have product usage data in Snowflake</strong>
+                  <p class="text-sm text-slate-600 mt-1">Daily activity logs—who's logging in, who's not</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-[#2e844a] font-bold text-lg mt-1">✓</span>
+                <div>
+                  <strong class="text-slate-900">We have renewal dates in Salesforce</strong>
+                  <p class="text-sm text-slate-600 mt-1">We know exactly when each account is up for renewal</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-[#2e844a] font-bold text-lg mt-1">✓</span>
+                <div>
+                  <strong class="text-slate-900">We have historical competitor loss patterns</strong>
+                  <p class="text-sm text-slate-600 mt-1">12 months of "who lost to whom" in opportunity records</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-gradient-to-r from-blue-50 to-green-50 border-2 border-blue-200">
+          <h3 class="text-2xl font-bold text-slate-900 mb-4 text-center">The Question</h3>
+          <p class="text-xl text-center text-slate-700 leading-relaxed">
+            If we <strong class="text-[#0176d3]">join usage drop signals</strong> with <strong class="text-[#2e844a]">renewal timelines</strong> 
+            and <strong class="text-amber-600">competitor patterns</strong>, can we predict which accounts are about to churn—<strong class="text-slate-900">before they do?</strong>
+          </p>
+        </div>
+
+        <div class="card bg-[#2e844a] bg-opacity-5 border-2 border-[#2e844a] border-opacity-30">
+          <p class="text-base text-slate-700 leading-relaxed text-center">
+            <strong class="text-slate-900">The answer:</strong> Yes. This pipeline identifies <strong class="text-[#2e844a]">340 at-risk accounts</strong> 
+            with names, usage scores, competitor threats, and <strong class="text-slate-900">90 days to intervene.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3: Data Sources -->
+  <div class="slide" id="slide-2">
+    <div class="slide-container max-w-7xl mx-auto">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <div class="badge">
+            Data Sources & Integration
+          </div>
+          <h2 class="text-5xl font-bold text-slate-900 leading-tight">
+            Three Data Streams,<br/>
+            <span class="text-[#0176d3]">One Intelligence Layer.</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6">
+          <div class="card border-t-4 border-t-[#0176d3]">
+            <div class="icon-box bg-blue-50 border-2 border-blue-200 text-[#0176d3] mb-4">🔷</div>
+            <h3 class="text-lg font-bold text-[#0176d3] mb-3">1. Salesforce</h3>
+            <p class="text-sm font-bold text-slate-900 mb-3">Source of Truth for Customer Relationships</p>
+            <div class="space-y-2 text-sm text-slate-600">
+              <div class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">•</span>
+                <span><strong>Opportunity.Competitor__c</strong> — who we lost to</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">•</span>
+                <span><strong>Account.Renewal_Date__c</strong> — when renewal happens</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">•</span>
+                <span><strong>Opportunity.CloseDate</strong> — when we lost the deal</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">•</span>
+                <span><strong>Opportunity.Amount</strong> — how much ARR was at risk</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-200">
+              <p class="text-xs text-slate-600 font-mono">Extracted via Salesforce API → raw_salesforce.opportunities</p>
+            </div>
+          </div>
+
+          <div class="card border-t-4 border-t-[#2e844a]">
+            <div class="icon-box bg-green-50 border-2 border-green-200 text-[#2e844a] mb-4">📊</div>
+            <h3 class="text-lg font-bold text-[#2e844a] mb-3">2. Product Usage Data</h3>
+            <p class="text-sm font-bold text-slate-900 mb-3">Behavioral Signal of Account Health</p>
+            <div class="space-y-2 text-sm text-slate-600">
+              <div class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">•</span>
+                <span><strong>Daily login events</strong> — who's actively using the product</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">•</span>
+                <span><strong>Feature adoption metrics</strong> — depth of engagement</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">•</span>
+                <span><strong>Account-level rollups</strong> — % of licensed seats active</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">•</span>
+                <span><strong>Trend direction</strong> — is usage increasing or dropping?</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-200">
+              <p class="text-xs text-slate-600 font-mono">Aggregated → analytics.usage_daily_account</p>
+            </div>
+          </div>
+
+          <div class="card border-t-4 border-t-amber-500">
+            <div class="icon-box bg-amber-50 border-2 border-amber-200 text-amber-600 mb-4">🎯</div>
+            <h3 class="text-lg font-bold text-amber-600 mb-3">3. Marketing Attribution</h3>
+            <p class="text-sm font-bold text-slate-900 mb-3">Context on Competitive Landscape</p>
+            <div class="space-y-2 text-sm text-slate-600">
+              <div class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">•</span>
+                <span><strong>Competitor mentions</strong> — in deal notes and emails</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">•</span>
+                <span><strong>Price sensitivity flags</strong> — was cost the objection?</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">•</span>
+                <span><strong>Industry vertical</strong> — does churn cluster by segment?</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">•</span>
+                <span><strong>CSM assignment</strong> — who owns the relationship</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-200">
+              <p class="text-xs text-slate-600 font-mono">Enriched → raw_marketing.account_intel</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-blue-50 border-2 border-blue-200">
+          <h3 class="text-xl font-bold text-slate-900 mb-4 text-center">The Integration Challenge</h3>
+          <div class="grid grid-cols-3 gap-6 text-center">
+            <div>
+              <p class="text-sm font-bold text-red-600 mb-2">❌ Different Timezones</p>
+              <p class="text-xs text-slate-600">Salesforce in PST, usage logs in UTC</p>
+            </div>
+            <div>
+              <p class="text-sm font-bold text-red-600 mb-2">❌ Grain Mismatch</p>
+              <p class="text-xs text-slate-600">Opportunities (deal-level) vs Usage (account-level)</p>
+            </div>
+            <div>
+              <p class="text-sm font-bold text-red-600 mb-2">❌ Temporal Alignment</p>
+              <p class="text-xs text-slate-600">Need usage as of close date, not current state</p>
+            </div>
+          </div>
+          <p class="text-sm text-center text-slate-700 mt-4">
+            <strong class="text-slate-900">Solution:</strong> Point-in-time joins + daily snapshots + standardized account keys
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4: Architecture -->
+  <div class="slide" id="slide-3">
+    <div class="slide-container max-w-7xl mx-auto">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <div class="badge">
+            Pipeline Architecture
+          </div>
+          <h2 class="text-5xl font-bold text-slate-900 leading-tight">
+            Built for <span class="text-[#0176d3]">Accuracy,</span><br/>
+            <span class="text-[#2e844a]">Speed,</span> and <span class="text-amber-600">Security.</span>
+          </h2>
+        </div>
+
+        <div class="card">
+          <h3 class="text-2xl font-bold text-slate-900 mb-6 text-center">Data Flow</h3>
+          <div class="grid grid-cols-4 gap-4 items-center">
+            <div class="text-center">
+              <div class="w-20 h-20 mx-auto rounded-xl bg-blue-50 border-2 border-blue-200 flex items-center justify-center text-3xl mb-3">🔷</div>
+              <p class="text-sm font-bold text-slate-900">Salesforce API</p>
+              <p class="text-xs text-slate-600 mt-1">Opportunities<br/>Accounts</p>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl mb-3">→</div>
+              <p class="text-xs text-slate-600">Daily Extract<br/>via Airflow</p>
+            </div>
+            <div class="text-center">
+              <div class="w-20 h-20 mx-auto rounded-xl bg-slate-100 border-2 border-slate-300 flex items-center justify-center text-3xl mb-3">❄️</div>
+              <p class="text-sm font-bold text-slate-900">Snowflake Bronze</p>
+              <p class="text-xs text-slate-600 mt-1">Raw tables<br/>audit logs</p>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl mb-3">→</div>
+              <p class="text-xs text-slate-600">dbt transforms<br/>+ QA checks</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 gap-4 items-center mt-6">
+            <div class="text-center">
+              <div class="w-20 h-20 mx-auto rounded-xl bg-green-50 border-2 border-green-200 flex items-center justify-center text-3xl mb-3">📊</div>
+              <p class="text-sm font-bold text-slate-900">Usage Data</p>
+              <p class="text-xs text-slate-600 mt-1">Daily activity<br/>Account rollups</p>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl mb-3">→</div>
+              <p class="text-xs text-slate-600">Aggregation<br/>pipeline</p>
+            </div>
+            <div class="text-center">
+              <div class="w-20 h-20 mx-auto rounded-xl bg-blue-100 border-2 border-blue-300 flex items-center justify-center text-3xl mb-3">💎</div>
+              <p class="text-sm font-bold text-slate-900">Snowflake Gold</p>
+              <p class="text-xs text-slate-600 mt-1">Enriched CI table<br/>Ready for BI</p>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl mb-3">→</div>
+              <p class="text-xs text-slate-600">Tableau<br/>Slack alerts</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6">
+          <div class="card">
+            <h4 class="text-sm font-bold text-[#0176d3] mb-3 uppercase tracking-wider">Orchestration</h4>
+            <div class="space-y-2 text-sm text-slate-700">
+              <p><strong>Apache Airflow</strong> manages daily DAG runs</p>
+              <p class="text-xs text-slate-600">• 2 AM PST extraction window<br/>• Parallel task execution<br/>• Retry logic on API failures</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4 class="text-sm font-bold text-[#2e844a] mb-3 uppercase tracking-wider">Transformation</h4>
+            <div class="space-y-2 text-sm text-slate-700">
+              <p><strong>dbt (Data Build Tool)</strong> for SQL modeling</p>
+              <p class="text-xs text-slate-600">• Version-controlled transforms<br/>• Automated testing layer<br/>• Lineage documentation</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4 class="text-sm font-bold text-amber-600 mb-3 uppercase tracking-wider">Quality Gates</h4>
+            <div class="space-y-2 text-sm text-slate-700">
+              <p><strong>6-check validation</strong> before promotion</p>
+              <p class="text-xs text-slate-600">• Row count delta < 20%<br/>• No NULL account IDs<br/>• Date ranges in valid window</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-slate-50 border-2 border-slate-300">
+          <p class="text-sm text-slate-700 text-center leading-relaxed">
+            <strong class="text-slate-900">Key principle:</strong> Fail fast, fail visible. If QA fails, the pipeline stops and Slack alerts the team. 
+            <strong class="text-[#0176d3]">No bad data reaches dashboards.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5: Data Integrity -->
+  <div class="slide" id="slide-4">
+    <div class="slide-container max-w-7xl mx-auto">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <div class="badge">
+            Data Integrity Layer
+          </div>
+          <h2 class="text-5xl font-bold text-slate-900 leading-tight">
+            Trust Built Into<br/>
+            <span class="text-[#0176d3]">Every Transform.</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
+          <div class="card border-t-4 border-t-[#0176d3]">
+            <h3 class="text-xl font-bold text-[#0176d3] mb-4">The 6-Check QA Layer</h3>
+            <div class="space-y-3">
+              {[1,2,3,4,5,6].map(i => (
+                <div key={i} class="flex items-start gap-3 p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <span class="w-6 h-6 rounded-full bg-[#0176d3] text-white flex items-center justify-center text-xs font-bold flex-shrink-0">${i}</span>
+                  <div class="text-sm">
+                    ${i === 1 && '<strong>Row count variance check:</strong> Daily load delta must be < 20%'}
+                    ${i === 2 && '<strong>NULL validation:</strong> account_id, opportunity_id cannot be NULL'}
+                    ${i === 3 && '<strong>Date range bounds:</strong> close_date within [today-365, today]'}
+                    ${i === 4 && '<strong>Referential integrity:</strong> All account IDs exist in dim_accounts'}
+                    ${i === 5 && '<strong>Duplicate detection:</strong> No duplicate opportunity IDs per load'}
+                    ${i === 6 && '<strong>Schema drift check:</strong> Column names/types match expected spec'}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="card border-t-4 border-t-[#2e844a]">
+              <h3 class="text-xl font-bold text-[#2e844a] mb-4">Quality Gate Process</h3>
+              <div class="space-y-3">
+                <div class="flex items-start gap-3">
+                  <span class="text-2xl">✓</span>
+                  <div class="text-sm">
+                    <strong class="text-slate-900">Pass:</strong> Data promoted to Gold layer
+                    <p class="text-xs text-slate-600 mt-1">Dashboards refresh automatically</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="text-2xl text-red-600">✗</span>
+                  <div class="text-sm">
+                    <strong class="text-slate-900">Fail:</strong> Pipeline halts immediately
+                    <p class="text-xs text-slate-600 mt-1">Slack alert to #data-eng with error details</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="text-2xl text-amber-600">⚠</span>
+                  <div class="text-sm">
+                    <strong class="text-slate-900">Warning:</strong> Data proceeds with flag
+                    <p class="text-xs text-slate-600 mt-1">Dashboard shows "data quality notice" banner</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card bg-blue-50 border-2 border-blue-200">
+              <h4 class="text-sm font-bold text-slate-900 mb-3">Point-in-Time Join Protection</h4>
+              <p class="text-sm text-slate-600 leading-relaxed mb-3">
+                We snapshot usage data daily. When joining to a closed opportunity, we use usage <strong>as of the close date</strong>—not current state.
+              </p>
+              <div class="p-3 bg-white rounded border border-slate-200 font-mono text-xs text-slate-700">
+                LEFT JOIN usage_snapshots us<br/>
+                ON o.account_id = us.account_id<br/>
+                <span class="text-[#0176d3] font-bold">AND us.snapshot_date = o.close_date</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-3">
+                <strong>Why it matters:</strong> Prevents data leakage. We're analyzing usage patterns that existed when the deal closed, not patterns that developed afterward.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-slate-50 border-2 border-slate-300">
+          <p class="text-base text-slate-700 text-center leading-relaxed">
+            <strong class="text-slate-900">Principle:</strong> Trust is earned through transparency. Every QA failure is logged. Every join is auditable. 
+            <strong class="text-[#0176d3]">The business needs to know the data is right—not just that it exists.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6: The Join Strategy -->
+  <div class="slide" id="slide-5">
+    <div class="slide-container max-w-7xl mx-auto">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <div class="badge">
+            The Join Strategy
+          </div>
+          <h2 class="text-5xl font-bold text-slate-900 leading-tight">
+            Connecting <span class="text-[#0176d3]">Loss Events</span><br/>
+            to <span class="text-[#2e844a]">Usage Signals.</span>
+          </h2>
+        </div>
+
+        <div class="card bg-slate-900 text-white">
+          <h3 class="text-xl font-bold mb-4">The Core SQL Pattern</h3>
+          <pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto text-sm font-mono">
+<span class="text-blue-300">SELECT</span>
+  o.account_id,
+  o.opportunity_id,
+  o.competitor_name,
+  o.close_date,
+  o.arr_at_risk,
+  us.usage_score_30d,
+  us.usage_trend,
+  a.renewal_date,
+  <span class="text-green-300">DATEDIFF</span>(day, <span class="text-amber-300">CURRENT_DATE</span>, a.renewal_date) <span class="text-blue-300">AS</span> days_to_renewal
+<span class="text-blue-300">FROM</span> salesforce.opportunities o
+<span class="text-blue-300">LEFT JOIN</span> analytics.usage_snapshots us
+  <span class="text-blue-300">ON</span> o.account_id = us.account_id
+  <span class="text-blue-300">AND</span> us.snapshot_date = o.close_date  <span class="text-slate-400">-- Point-in-time</span>
+<span class="text-blue-300">LEFT JOIN</span> salesforce.accounts a
+  <span class="text-blue-300">ON</span> o.account_id = a.account_id
+<span class="text-blue-300">WHERE</span> o.stage = <span class="text-amber-300">'Closed Lost'</span>
+  <span class="text-blue-300">AND</span> o.competitor_name <span class="text-blue-300">IS NOT NULL</span>
+  <span class="text-blue-300">AND</span> a.renewal_date <span class="text-blue-300">BETWEEN</span> <span class="text-amber-300">CURRENT_DATE</span> <span class="text-blue-300">AND</span> <span class="text-amber-300">CURRENT_DATE</span> + <span class="text-green-300">90</span>;</pre>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
+          <div class="card">
+            <h3 class="text-lg font-bold text-slate-900 mb-4">Why This Join Works</h3>
+            <div class="space-y-3 text-sm text-slate-700">
+              <div class="flex items-start gap-3">
+                <span class="text-[#0176d3] font-bold text-xl">1</span>
+                <div>
+                  <strong>Temporal alignment</strong>
+                  <p class="text-xs text-slate-600 mt-1">Usage snapshot matches opportunity close date—no time travel</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-[#0176d3] font-bold text-xl">2</span>
+                <div>
+                  <strong>Account-level grain</strong>
+                  <p class="text-xs text-slate-600 mt-1">Both tables keyed on account_id—clean 1:1 relationship</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-[#0176d3] font-bold text-xl">3</span>
+                <div>
+                  <strong>Forward-looking filter</strong>
+                  <p class="text-xs text-slate-600 mt-1">Renewal date in next 90 days = intervention window</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="text-lg font-bold text-slate-900 mb-4">What We Get</h3>
+            <div class="space-y-3 text-sm text-slate-700">
+              <div class="p-3 bg-green-50 rounded-lg border border-green-200">
+                <strong class="text-[#2e844a]">340 at-risk accounts</strong>
+                <p class="text-xs text-slate-600 mt-1">Low usage + upcoming renewal + competitor history</p>
+              </div>
+              <div class="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                <strong class="text-[#0176d3]">Actionable segmentation</strong>
+                <p class="text-xs text-slate-600 mt-1">Price-sensitive vs engagement-loss vs feature gaps</p>
+              </div>
+              <div class="p-3 bg-amber-50 rounded-lg border border-amber-200">
+                <strong class="text-amber-600">Prioritized list</strong>
+                <p class="text-xs text-slate-600 mt-1">Sorted by days to renewal—CS tackles nearest dates first</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-blue-50 border-2 border-blue-200">
+          <h3 class="text-xl font-bold text-slate-900 mb-3 text-center">The Output Table Schema</h3>
+          <div class="grid grid-cols-4 gap-4 text-center text-sm">
+            <div class="p-3 bg-white rounded border border-slate-200">
+              <p class="font-bold text-[#0176d3] mb-1">Account Info</p>
+              <p class="text-xs text-slate-600">ID, name, CSM, segment</p>
+            </div>
+            <div class="p-3 bg-white rounded border border-slate-200">
+              <p class="font-bold text-[#2e844a] mb-1">Usage Signals</p>
+              <p class="text-xs text-slate-600">Score, trend, 30d avg</p>
+            </div>
+            <div class="p-3 bg-white rounded border border-slate-200">
+              <p class="font-bold text-amber-600 mb-1">Competitor Data</p>
+              <p class="text-xs text-slate-600">Name, loss count, ARR lost</p>
+            </div>
+            <div class="p-3 bg-white rounded border border-slate-200">
+              <p class="font-bold text-red-600 mb-1">Renewal Info</p>
+              <p class="text-xs text-slate-600">Date, days left, ARR value</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: Usage Trend Patterns -->
+  <div class="slide" id="slide-6">
+    <div class="slide-container max-w-7xl mx-auto">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <div class="badge">
+            Usage Trend Patterns
+          </div>
+          <h2 class="text-5xl font-bold text-slate-900 leading-tight">
+            Usage Drop Is<br/>
+            <span class="text-red-600">The Strongest Predictor.</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6">
+          <div class="card">
+            <h3 class="text-lg font-bold text-red-600 mb-4">🔻 Declining Usage</h3>
+            <div class="space-y-3">
+              <p class="text-sm text-slate-700"><strong>Pattern:</strong> Usage dropping 30%+ in last 60 days</p>
+              <div class="space-y-2">
+                <div class="flex justify-between text-sm">
+                  <span class="text-slate-600">Churn rate</span>
+                  <span class="font-bold text-red-600">68%</span>
+                </div>
+                <div class="h-6 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-red-600 rounded-full" style="width: 68%"></div>
+                </div>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">These accounts need immediate CS outreach. Usage drop often precedes competitive shopping.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="text-lg font-bold text-amber-600 mb-4">📊 Flat Usage</h3>
+            <div class="space-y-3">
+              <p class="text-sm text-slate-700"><strong>Pattern:</strong> Consistent 30-60% usage for 6+ months</p>
+              <div class="space-y-2">
+                <div class="flex justify-between text-sm">
+                  <span class="text-slate-600">Churn rate</span>
+                  <span class="font-bold text-amber-600">34%</span>
+                </div>
+                <div class="h-6 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-amber-500 rounded-full" style="width: 34%"></div>
+                </div>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">Moderate risk. Not growing engagement, but not declining either. Monitor for price sensitivity at renewal.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="text-lg font-bold text-[#2e844a] mb-4">📈 Growing Usage</h3>
+            <div class="space-y-3">
+              <p class="text-sm text-slate-700"><strong>Pattern:</strong> Usage increasing or steady >70%</p>
+              <div class="space-y-2">
+                <div class="flex justify-between text-sm">
+                  <span class="text-slate-600">Churn rate</span>
+                  <span class="font-bold text-[#2e844a]">8%</span>
+                </div>
+                <div class="h-6 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-[#2e844a] rounded-full" style="width: 8%"></div>
+                </div>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">Low churn risk. These accounts are sticky. Focus on upsell opportunities instead of retention.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-slate-50 border-2 border-slate-300">
+          <h3 class="text-xl font-bold text-slate-900 mb-4 text-center">The 30% Threshold</h3>
+          <p class="text-base text-slate-700 text-center leading-relaxed mb-4">
+            Accounts with <strong class="text-red-600">&lt;30% usage</strong> are <strong>3.2× more likely to churn</strong> than accounts above that line.
+          </p>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="p-4 bg-white rounded-lg border border-slate-200">
+              <p class="text-sm font-bold text-slate-900 mb-2">Below 30% Usage</p>
+              <p class="text-3xl font-bold text-red-600 mb-1">68%</p>
+              <p class="text-xs text-slate-600">of these accounts churned to competitors</p>
+            </div>
+            <div class="p-4 bg-white rounded-lg border border-slate-200">
+              <p class="text-sm font-bold text-slate-900 mb-2">Above 30% Usage</p>
+              <p class="text-3xl font-bold text-[#2e844a] mb-1">21%</p>
+              <p class="text-xs text-slate-600">churn rate—much more stable</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-blue-50 border-2 border-blue-200">
+          <p class="text-base text-slate-700 text-center leading-relaxed">
+            <strong class="text-slate-900">Why it matters:</strong> This threshold becomes the trigger for automated CS alerts. 
+            When an account drops below 30% usage <strong class="text-[#0176d3]">and</strong> has a renewal in 90 days, 
+            the system flags it as high-priority.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 8: Insight Matrix -->
+  <div class="slide" id="slide-7">
+    <div class="slide-container max-w-7xl mx-auto">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <div class="badge">
+            Insight Matrix
+          </div>
+          <h2 class="text-5xl font-bold text-slate-900 leading-tight">
+            Different Signals,<br/>
+            <span class="text-[#0176d3]">Different Actions.</span>
+          </h2>
+        </div>
+
+        <div class="card">
+          <h3 class="text-2xl font-bold text-slate-900 mb-6 text-center">The 2×2 Segmentation Framework</h3>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="space-y-4">
+              <div class="p-5 bg-red-50 rounded-xl border-2 border-red-200">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="w-10 h-10 rounded-lg bg-red-600 text-white flex items-center justify-center font-bold">1</div>
+                  <h4 class="text-lg font-bold text-red-700">Low Usage + Price Sensitive</h4>
+                </div>
+                <p class="text-sm text-slate-700 mb-3">
+                  <strong>Signal:</strong> &lt;30% usage, competitive pricing objections in notes
+                </p>
+                <p class="text-sm text-slate-700 mb-3">
+                  <strong>Action:</strong> CS + Pricing team—offer incentive or discount before they shop
+                </p>
+                <div class="p-3 bg-white rounded border border-red-300 text-sm">
+                  <strong class="text-red-700">Risk Level: Critical</strong>
+                  <p class="text-xs text-slate-600 mt-1">These accounts are actively evaluating alternatives</p>
+                </div>
+              </div>
+
+              <div class="p-5 bg-amber-50 rounded-xl border-2 border-amber-200">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="w-10 h-10 rounded-lg bg-amber-600 text-white flex items-center justify-center font-bold">3</div>
+                  <h4 class="text-lg font-bold text-amber-700">High Usage + Price Sensitive</h4>
+                </div>
+                <p class="text-sm text-slate-700 mb-3">
+                  <strong>Signal:</strong> >70% usage, but pricing concerns flagged
+                </p>
+                <p class="text-sm text-slate-700 mb-3">
+                  <strong>Action:</strong> Pricing negotiation—they like the product, just need cost justification
+                </p>
+                <div class="p-3 bg-white rounded border border-amber-300 text-sm">
+                  <strong class="text-amber-700">Risk Level: Moderate</strong>
+                  <p class="text-xs text-slate-600 mt-1">Retain with value-based pricing conversation</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="p-5 bg-orange-50 rounded-xl border-2 border-orange-200">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="w-10 h-10 rounded-lg bg-orange-600 text-white flex items-center justify-center font-bold">2</div>
+                  <h4 class="text-lg font-bold text-orange-700">Low Usage + Not Price Driven</h4>
+                </div>
+                <p class="text-sm text-slate-700 mb-3">
+                  <strong>Signal:</strong> &lt;30% usage, no pricing objections—it's an engagement problem
+                </p>
+                <p class="text-sm text-slate-700 mb-3">
+                  <strong>Action:</strong> Product team + CS—feature gaps or onboarding failure
+                </p>
+                <div class="p-3 bg-white rounded border border-orange-300 text-sm">
+                  <strong class="text-orange-700">Risk Level: High</strong>
+                  <p class="text-xs text-slate-600 mt-1">Product isn't solving their problem—harder to save</p>
+                </div>
+              </div>
+
+              <div class="p-5 bg-green-50 rounded-xl border-2 border-green-200">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="w-10 h-10 rounded-lg bg-[#2e844a] text-white flex items-center justify-center font-bold">4</div>
+                  <h4 class="text-lg font-bold text-[#2e844a]">High Usage + Not Price Driven</h4>
+                </div>
+                <p class="text-sm text-slate-700 mb-3">
+                  <strong>Signal:</strong> >70% usage, no objections—healthy account
+                </p>
+                <p class="text-sm text-slate-700 mb-3">
+                  <strong>Action:</strong> Upsell motion—they're getting value, expand the relationship
+                </p>
+                <div class="p-3 bg-white rounded border border-green-300 text-sm">
+                  <strong class="text-[#2e844a]">Risk Level: Low</strong>
+                  <p class="text-xs text-slate-600 mt-1">Focus on growth, not retention</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-blue-50 border-2 border-blue-200">
+          <p class="text-base text-slate-700 text-center leading-relaxed">
+            <strong class="text-slate-900">Why this matters:</strong> One pipeline, <strong class="text-[#0176d3]">three different delivery targets</strong>—
+            CS gets the at-risk list, Product gets engagement analysis, Pricing gets cost-sensitivity data. Same source, tailored outputs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 9: Price Sensitive Analysis -->
+  <div class="slide" id="slide-8">
+    <div class="slide-container max-w-7xl mx-auto">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <div class="badge">
+            Deep Dive: Price Sensitive Segment
+          </div>
+          <h2 class="text-5xl font-bold text-slate-900 leading-tight">
+            <span class="text-amber-600">Price Loss</span> vs<br/>
+            <span class="text-red-600">Engagement Loss.</span>
+          </h2>
+          <p class="text-lg text-slate-600 max-w-3xl">
+            Not all churn is the same. Separating price-driven loss from engagement-driven loss unlocks targeted interventions.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
+          <div class="card">
+            <h3 class="text-xl font-bold text-amber-600 mb-4">💰 Price-Driven Churn</h3>
+            <div class="space-y-4">
+              <div class="p-4 bg-amber-50 rounded-lg">
+                <p class="text-sm font-bold text-slate-900 mb-2">Characteristics</p>
+                <ul class="text-sm text-slate-700 space-y-1">
+                  <li class="flex items-start gap-2">
+                    <span>•</span>
+                    <span>Usage is moderate or even healthy (30-70%)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span>•</span>
+                    <span>"Budget constraints" or "cost reduction" in loss reason</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span>•</span>
+                    <span>Competitor mentioned is known for lower pricing</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="p-4 bg-white rounded-lg border-2 border-amber-200">
+                <p class="text-sm font-bold text-slate-900 mb-2">Recommended Action</p>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                  <strong class="text-amber-600">Pricing team:</strong> Offer tiered pricing, volume discounts, or multi-year lock-in incentives. 
+                  They like the product—just need cost justification.
+                </p>
+              </div>
+
+              <div class="text-center p-3 bg-slate-50 rounded-lg">
+                <p class="text-3xl font-bold text-amber-600 mb-1">$1.8M</p>
+                <p class="text-xs text-slate-600">ARR at risk in this segment</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="text-xl font-bold text-red-600 mb-4">📉 Engagement-Driven Churn</h3>
+            <div class="space-y-4">
+              <div class="p-4 bg-red-50 rounded-lg">
+                <p class="text-sm font-bold text-slate-900 mb-2">Characteristics</p>
+                <ul class="text-sm text-slate-700 space-y-1">
+                  <li class="flex items-start gap-2">
+                    <span>•</span>
+                    <span>Usage is low (&lt;30%) and declining</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span>•</span>
+                    <span>"Feature gaps" or "better functionality" in loss notes</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span>•</span>
+                    <span>Competitor offers capabilities we don't have</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="p-4 bg-white rounded-lg border-2 border-red-200">
+                <p class="text-sm font-bold text-slate-900 mb-2">Recommended Action</p>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                  <strong class="text-red-600">Product team:</strong> This is a roadmap signal. If 50+ accounts churn citing the same missing feature, 
+                  that's a product investment priority.
+                </p>
+              </div>
+
+              <div class="text-center p-3 bg-slate-50 rounded-lg">
+                <p class="text-3xl font-bold text-red-600 mb-1">$2.4M</p>
+                <p class="text-xs text-slate-600">ARR at risk in this segment</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="text-xl font-bold text-slate-900 mb-4 text-center">How We Flag Price Sensitivity</h3>
+          <div class="grid grid-cols-3 gap-4 text-sm">
+            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <p class="font-bold text-[#0176d3] mb-2">1. Keyword Detection</p>
+              <p class="text-xs text-slate-600">NLP scan of opportunity notes for "budget," "cost," "price," "cheaper"</p>
+            </div>
+            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <p class="font-bold text-[#0176d3] mb-2">2. Competitor Mapping</p>
+              <p class="text-xs text-slate-600">If lost to known discount competitor (e.g., "BudgetBI Tool"), flag as price-driven</p>
+            </div>
+            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <p class="font-bold text-[#0176d3] mb-2">3. CSM Input</p>
+              <p class="text-xs text-slate-600">Custom field in SFDC: "Primary Loss Reason" → "Price" vs "Features"</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-blue-50 border-2 border-blue-200">
+          <p class="text-base text-slate-700 text-center leading-relaxed">
+            <strong class="text-slate-900">The value:</strong> This segmentation lets us route insights to the right team. 
+            <strong class="text-[#0176d3]">Pricing team gets one brief, Product team gets another</strong>—same pipeline, different outputs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 10: Dashboard -->
+  <div class="slide" id="slide-9">
+    <div class="slide-container max-w-7xl mx-auto">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <div class="badge">
+            Delivery & User Experience
+          </div>
+          <h2 class="text-5xl font-bold text-slate-900 leading-tight">
+            Data Is Only Useful<br/>
+            If <span class="text-[#0176d3]">People Act On It.</span>
+          </h2>
+        </div>
+
+        <div class="card">
+          <h3 class="text-2xl font-bold text-slate-900 mb-6">Competitive Intelligence Dashboard (Tableau)</h3>
+          <div class="grid grid-cols-4 gap-4 mb-6">
+            <div class="p-4 bg-red-50 rounded-lg border-2 border-red-200 text-center">
+              <p class="text-3xl font-bold text-red-600 mb-1">340</p>
+              <p class="text-xs text-slate-600">At-Risk Accounts<br/>(&lt;30% usage, 90d window)</p>
+            </div>
+            <div class="p-4 bg-amber-50 rounded-lg border-2 border-amber-200 text-center">
+              <p class="text-3xl font-bold text-amber-600 mb-1">$4.2M</p>
+              <p class="text-xs text-slate-600">Total ARR at Risk<br/>(next 90 days)</p>
+            </div>
+            <div class="p-4 bg-blue-50 rounded-lg border-2 border-blue-200 text-center">
+              <p class="text-3xl font-bold text-[#0176d3] mb-1">68%</p>
+              <p class="text-xs text-slate-600">Churn Rate<br/>(low usage tier)</p>
+            </div>
+            <div class="p-4 bg-green-50 rounded-lg border-2 border-green-200 text-center">
+              <p class="text-3xl font-bold text-[#2e844a] mb-1">23%</p>
+              <p class="text-xs text-slate-600">Projected Reduction<br/>(with intervention)</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <h4 class="text-sm font-bold text-slate-900 mb-3">📋 At-Risk Account List</h4>
+              <p class="text-xs text-slate-600 mb-3">Sortable table with:</p>
+              <ul class="text-xs text-slate-600 space-y-1">
+                <li>• Account name, renewal date, days remaining</li>
+                <li>• Usage score (color-coded: red/amber/green)</li>
+                <li>• Competitor mentioned in past losses</li>
+                <li>• Assigned CSM, recommended action</li>
+              </ul>
+            </div>
+
+            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <h4 class="text-sm font-bold text-slate-900 mb-3">📊 Competitor Breakdown</h4>
+              <p class="text-xs text-slate-600 mb-3">Bar chart showing:</p>
+              <ul class="text-xs text-slate-600 space-y-1">
+                <li>• Top 5 competitors by deal loss count</li>
+                <li>• ARR lost to each competitor (trailing 12 months)</li>
+                <li>• Win rate trend (are we gaining or losing ground?)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4">
+          <div class="card bg-green-50 border-2 border-green-200">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 rounded-xl bg-green-100 border-2 border-green-300 flex items-center justify-center text-2xl">🚨</div>
+              <h4 class="font-bold text-[#2e844a] text-lg">Push Model</h4>
+            </div>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Weekly Slack digest to CS team: "12 accounts dropped below 30% usage this week. Here are the names and renewal dates."
+            </p>
+          </div>
+
+          <div class="card bg-amber-50 border-2 border-amber-200">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 rounded-xl bg-amber-100 border-2 border-amber-300 flex items-center justify-center text-2xl">⚡</div>
+              <h4 class="font-bold text-amber-600 text-lg">Threshold Alerts</h4>
+            </div>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Real-time alert when enterprise account (&gt;$100K ARR) crosses into high-risk territory. Goes directly to VP of CS.
+            </p>
+          </div>
+
+          <div class="card bg-blue-50 border-2 border-blue-200">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 rounded-xl bg-blue-100 border-2 border-blue-300 flex items-center justify-center text-2xl">📊</div>
+              <h4 class="font-bold text-[#0176d3] text-lg">Pull Model</h4>
+            </div>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Tableau dashboard—filterable by region, competitor, time. Leadership uses this for strategic planning and pattern identification.
+            </p>
+          </div>
+        </div>
+
+        <div class="card bg-[#2e844a] bg-opacity-5 border-2 border-[#2e844a] border-opacity-30 text-center">
+          <p class="text-base text-slate-700 leading-relaxed">
+            <strong class="text-[#2e844a]">Same principle as Part 1:</strong> Detect signal in data → clean → enrich → 
+            deliver to the right person with a clear call to action. <strong class="text-slate-900">Data that drives action before it's too late.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 11: Strategic Close -->
+  <div class="slide" id="slide-10">
+    <div class="slide-container max-w-7xl mx-auto">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <div class="badge" style="background: rgba(46, 132, 74, 0.1); border-color: rgba(46, 132, 74, 0.3); color: #2e844a;">
+            Strategic Value · The Thread Across Both Parts
+          </div>
+          <h2 class="text-5xl font-bold text-slate-900 leading-tight">
+            Infrastructure That<br/>
+            <span class="text-[#2e844a]">Earns Business Trust.</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6">
+          <div class="card">
+            <div class="text-4xl font-bold text-[#2e844a] mb-4">90 days</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-3">Predict Churn Before It Happens</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Usage drop below 30% triggers an automated CS alert 90 days before renewal. The pipeline turns a historical report into a forward-looking early warning system.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="text-4xl font-bold text-amber-600 mb-4">2 signals</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-3">Separate Price Loss from Engagement Loss</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Price loss vs engagement loss require completely different responses. Product team gets roadmap input. Pricing team gets segment analysis. One pipeline, three actionable briefs.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="text-4xl font-bold text-[#0176d3] mb-4">~23%</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-3">Projected Reduction in Competitive Churn</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Proactive CS engagement on the 340 at-risk accounts could protect $2.5–3M of the $4.2M ARR at risk—based on comparable intervention programs.
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-xl font-bold text-slate-700">The Shift This Enables</h3>
+          
+          <div class="card">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center text-2xl font-bold text-red-600">←</div>
+              <div class="flex-1">
+                <h4 class="text-base font-bold text-slate-600 mb-2">Before: Reactive</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  "We lost 108 deals to Rival Co. last quarter." Reported after the fact. No usage context. No intervention window. Just a number on a slide.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center text-2xl font-bold text-[#2e844a]">→</div>
+              <div class="flex-1">
+                <h4 class="text-base font-bold text-[#2e844a] mb-2">After: Predictive</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  "340 accounts have &lt;30% usage and renew within 90 days. Here are the names, competitors, and recommended actions." CS acts 10 weeks before the loss happens.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-2xl font-bold text-[#0176d3]">↑</div>
+              <div class="flex-1">
+                <h4 class="text-base font-bold text-[#0176d3] mb-2">The Principle</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  Moving from "here's what happened" to "here's what's about to happen" is the difference between a reporting function and a growth engine. This pipeline makes that shift.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-[#2e844a] bg-opacity-5 border-2 border-[#2e844a] border-opacity-30">
+          <p class="text-base text-slate-700 leading-relaxed">
+            <strong class="text-slate-900">The Thread Across Both Parts:</strong> The adoption alert pipeline (Part 1) and this CI pipeline (Part 2) follow the same architecture—detect a signal in data, clean it, enrich it, and deliver it to the right person with a clear call to action. At LinkedIn, the signal was low product adoption. Here, it's low usage predicting competitive loss. <em class="text-[#2e844a]">Different domain, same engineering. Same outcome: data that drives action before it's too late.</em>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 12: Summary -->
+  <div class="slide" id="slide-11">
+    <div class="slide-container max-w-7xl mx-auto">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <div class="badge">
+            What This Pipeline Delivers
+          </div>
+          <h2 class="text-5xl font-bold text-slate-900 leading-tight">
+            Accuracy. Speed. Security.<br/>
+            <span class="text-[#0176d3]">Built Into Every Step.</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6">
+          <!-- Data Pipeline -->
+          <div class="card border-t-4 border-t-[#0176d3]">
+            <h3 class="text-xl font-bold text-[#0176d3] mb-6">The Data Pipeline</h3>
+            
+            <div class="space-y-4">
+              <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Accuracy</h4>
+                <ul class="space-y-1 text-sm text-slate-600">
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>6-check QA layer validates every load</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>Quality gate stops bad data before dashboards</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>Point-in-time join prevents data leakage</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Speed</h4>
+                <ul class="space-y-1 text-sm text-slate-600">
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>Minimize latency from source to dashboard</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>Pre-aggregated summary tables</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>Daily snapshots enable instant lookups</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Security</h4>
+                <ul class="space-y-1 text-sm text-slate-600">
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>PII encrypted at rest</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>Role-based access controls</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>Audit log on every extraction</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- User Experience -->
+          <div class="card border-t-4 border-t-amber-500">
+            <h3 class="text-xl font-bold text-amber-600 mb-6">The User Experience</h3>
+            
+            <div class="space-y-4">
+              <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Quick Insight</h4>
+                <ul class="space-y-1 text-sm text-slate-600">
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>KPI row answers question in 3 seconds</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>At-risk accounts sorted by renewal date</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>12-month sparklines show trend</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Filtering</h4>
+                <ul class="space-y-1 text-sm text-slate-600">
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>One-click competitor filter</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>Segment and date range slicers</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>Custom views without SQL</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Delivery</h4>
+                <ul class="space-y-1 text-sm text-slate-600">
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>Tableau (pull – on-demand)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>Slack digests (push – weekly)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>CS alerts (proactive – threshold)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>Agentforce (AI – semantic queries)</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Strategic Thread -->
+          <div class="card border-t-4 border-t-[#2e844a]">
+            <h3 class="text-xl font-bold text-[#2e844a] mb-6">The Strategic Thread</h3>
+            
+            <div class="space-y-4">
+              <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">The Pattern</h4>
+                <ul class="space-y-1 text-sm text-slate-600">
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>Part 1 (LIHA): signal → pipeline → delivery</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>Part 2 (CI): same pattern, different domain</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-slate-400 font-bold">•</span>
+                    <span>One principle: detect, clean, enrich, deliver</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">The Shift</h4>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-600 font-bold">•</span>
+                    <span class="text-slate-600"><strong class="text-red-600">Before:</strong> "We lost 108 deals"</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-[#2e844a] font-bold">•</span>
+                    <span class="text-slate-600"><strong class="text-[#2e844a]">After:</strong> "340 accounts at risk. Here are the names."</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="pt-3 border-t-2 border-slate-200">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">One Line</h4>
+                <p class="text-base font-bold text-[#2e844a] leading-snug">
+                  This isn't a reporting problem.<br/>
+                  It's a revenue protection problem.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-slate-50 border-2 border-slate-200 text-center">
+          <p class="text-sm text-slate-600">
+            Mohseen Kolhar · Data Engineer, Competitive Intelligence · <strong class="text-slate-900">Ready for Q&A</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Navigation -->
+  <footer class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-t-2 border-slate-200 shadow-lg z-50">
+    <div class="max-w-7xl mx-auto px-8 py-5">
+      <div class="flex items-center justify-between">
+        <button onclick="previousSlide()" id="prev-btn" class="nav-button">
+          <span>←</span>
+          <span>Previous</span>
+        </button>
+
+        <!-- Slide Dots -->
+        <div class="flex items-center gap-2.5" id="dots-container"></div>
+
+        <button onclick="nextSlide()" id="next-btn" class="nav-button">
+          <span>Next</span>
+          <span>→</span>
+        </button>
+      </div>
+
+      <div class="text-center mt-3">
+        <p class="text-sm text-slate-600">
+          <strong id="slide-title">Part 2 Overview</strong> · 
+          <span id="slide-counter">1 / 12</span> · 
+          <span class="text-xs text-slate-500">Use ← → arrow keys to navigate</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const slideData = [
+      { title: 'Part 2 Overview' },
+      { title: 'The Problem' },
+      { title: 'Data Sources' },
+      { title: 'Architecture' },
+      { title: 'Data Integrity' },
+      { title: 'The Join Strategy' },
+      { title: 'Usage Trend Patterns' },
+      { title: 'Insight Matrix' },
+      { title: 'Price Sensitive Analysis' },
+      { title: 'Dashboard' },
+      { title: 'Strategic Value' },
+      { title: 'Summary' }
+    ];
+    
+    let currentSlide = 0;
+    
+    // Create dots
+    const dotsContainer = document.getElementById('dots-container');
+    slideData.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (index === 0 ? ' active' : '');
+      dot.onclick = () => goToSlide(index);
+      dotsContainer.appendChild(dot);
+    });
+    
+    function updateSlide() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+      });
+      
+      // Update dots
+      const dots = dotsContainer.querySelectorAll('.dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+      
+      // Update buttons
+      document.getElementById('prev-btn').disabled = currentSlide === 0;
+      document.getElementById('next-btn').disabled = currentSlide === slides.length - 1;
+      
+      // Update title and counter
+      document.getElementById('slide-title').textContent = slideData[currentSlide].title;
+      document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${slides.length}`;
+    }
+    
+    function nextSlide() {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        updateSlide();
+      }
+    }
+    
+    function previousSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlide();
+      }
+    }
+    
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSlide();
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') previousSlide();
+    });
+    
+    // Initialize
+    updateSlide();
+  </script>
+</body>
+</html>

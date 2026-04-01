@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Competitive Intelligence - Tying Product Usage to Competitive Loss</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .animate-in { animation: fadeIn 0.7s ease-out; }
+  /* Tailwind v4 border-3 is not in CDN v3, approximate */
+  .border-3 { border-width: 3px; }
+</style>
+</head>
+<body class="bg-white text-slate-800">
+
+<div id="app" class="min-h-screen bg-white text-slate-800 flex flex-col">
+
+  <!-- Header -->
+  <header class="border-b border-slate-200 bg-white/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div>
+        <h1 class="font-bold text-sm" style="color:#0176d3">
+          Competitive Intelligence <span class="text-slate-400 font-normal mx-2">-</span> <span class="text-slate-600 font-normal">Tying Product Usage to Competitive Loss</span>
+        </h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="prevSlide()" id="prevBtn" class="flex items-center gap-1 px-2 py-1 rounded-md bg-white border text-[10px] font-medium hover:text-white transition-all" style="border-color:#0176d3;color:#0176d3" onmouseover="this.style.backgroundColor='#0176d3';this.style.color='white'" onmouseout="this.style.backgroundColor='white';this.style.color='#0176d3'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Prev
+        </button>
+        <button onclick="nextSlide()" id="nextBtn" class="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] text-white font-medium transition-all" style="background-color:#0176d3" onmouseover="this.style.backgroundColor='#014f8e'" onmouseout="this.style.backgroundColor='#0176d3'">
+          Next
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+        <div class="h-4 w-px bg-slate-300"></div>
+        <span class="text-xs text-slate-500 font-mono" id="slideCounter">1 / 12</span>
+        <div class="h-4 w-px bg-slate-300"></div>
+        <span class="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider" style="background-color:rgba(46,132,74,0.1);color:#2e844a">Part 2</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex items-center justify-center py-6 px-8" style="background:linear-gradient(to bottom right, rgba(219,234,254,0.3), white, rgba(248,250,252,0.3))">
+    <div class="w-full max-w-7xl">
+
+      <!-- SLIDE 0: Intro -->
+      <div class="slide" id="slide-0">
+        <div class="space-y-10 animate-in">
+          <div class="space-y-5">
+            <div class="inline-block px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase" style="background-color:rgba(46,132,74,0.1);border:2px solid rgba(46,132,74,0.2);color:#2e844a">
+              Part 2 &middot; Competitive Data Problem
+            </div>
+            <h2 class="text-6xl font-bold leading-tight text-slate-900">
+              Tying Product Usage to
+              <br />
+              <span style="color:#2e844a">Competitive Loss</span>
+            </h2>
+            <p class="text-lg text-slate-600 max-w-3xl leading-relaxed">
+              A complete data processing cycle &mdash; from extraction through integrity to insight &mdash; with a focus on data quality and accuracy
+            </p>
+          </div>
+
+          <div class="h-1 rounded-full max-w-xl" style="background:linear-gradient(to right,#0176d3,#2e844a,#0176d3)"></div>
+
+          <div class="grid grid-cols-5 gap-5" id="intro-steps"></div>
+        </div>
+      </div>
+
+      <!-- SLIDE 1: Problem -->
+      <div class="slide hidden" id="slide-1">
+        <div class="space-y-8 animate-in">
+          <div class="space-y-4">
+            <div class="inline-block px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase" style="background-color:rgba(46,132,74,0.1);border:2px solid rgba(46,132,74,0.2);color:#2e844a">
+              The Challenge
+            </div>
+            <h2 class="text-5xl font-bold leading-tight text-slate-900">
+              Can We Tie Product Usage to
+              <br />
+              <span style="color:#2e844a">Competitive Loss?</span>
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6">
+            <div class="col-span-1 p-8 rounded-2xl shadow-sm" style="border:2px solid rgba(46,132,74,0.3);background:linear-gradient(to bottom right, rgba(46,132,74,0.05), rgba(46,132,74,0.1))">
+              <h3 class="text-xl font-bold mb-4 flex items-center gap-3" style="color:#2e844a">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                The Question
+              </h3>
+              <p class="text-slate-700 leading-relaxed text-lg">
+                If a deal has been lost to a competitor, did the customer have low usage of existing 
+                products that had already been purchased? Can we tie product usage metrics to competitive losses &mdash; and surface that insight to drive better decisions?
+              </p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6">
+              <div class="p-6 rounded-2xl border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style="background-color:rgba(1,118,211,0.1);border:2px solid rgba(1,118,211,0.2)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0176d3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+                </div>
+                <h3 class="font-bold mb-3 text-lg" style="color:#0176d3">The Data</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  Three Salesforce objects &mdash; <strong class="text-slate-900">Opportunity</strong> (deal outcomes: stage, amount, close date), 
+                  <strong class="text-slate-900"> CI_Opportunity_Competitor</strong> (junction table: which competitors were on the deal, who was Leading, competitive notes), 
+                  and <strong class="text-slate-900">Account</strong> (product usage derived from asset line items). Data already in Snowflake via the existing pipeline.
+                </p>
+              </div>
+
+              <div class="p-6 rounded-2xl border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style="background-color:rgba(124,58,237,0.1);border:2px solid rgba(124,58,237,0.2)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
+                </div>
+                <h3 class="font-bold mb-3 text-lg" style="color:#7c3aed">The Pipeline</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  Data flows: <strong class="text-slate-900">Salesforce &rarr; Azure &rarr; Airflow &rarr; Snowflake</strong>. 
+                  Already in the warehouse&mdash;we query from there. Existing infrastructure, new insights.
+                </p>
+              </div>
+
+              <div class="p-6 rounded-2xl border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style="background-color:rgba(46,132,74,0.1);border:2px solid rgba(46,132,74,0.2)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2e844a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>
+                </div>
+                <h3 class="font-bold mb-3 text-lg" style="color:#2e844a">The Deliverable</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  A complete data processing cycle &mdash; from extraction through integrity to insight &mdash; with a <strong class="text-slate-900">focus on data quality and accuracy</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: Data Sources -->
+      <div class="slide hidden" id="slide-2">
+        <div class="space-y-8 animate-in">
+          <div class="space-y-4">
+            <div class="inline-block px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase" style="background-color:rgba(1,118,211,0.1);border:2px solid rgba(1,118,211,0.2);color:#0176d3">
+              Step 1 &middot; Source Data &mdash; Three Salesforce Objects
+            </div>
+            <h2 class="text-5xl font-bold leading-tight text-slate-900">
+              The Data Lives in
+              <br />
+              <span style="color:#0176d3">Three Connected Objects.</span>
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-3 gap-6">
+            <!-- Opportunity -->
+            <div class="rounded-2xl border-2 border-slate-200 bg-white p-6 shadow-sm" style="border-top:4px solid #0176d3">
+              <div class="text-xs font-bold uppercase tracking-wider mb-3" style="color:#0176d3">Standard Object</div>
+              <h3 class="text-2xl font-bold mb-5" style="color:#0176d3">Opportunity</h3>
+              <div class="space-y-4">
+                <div class="flex justify-between text-sm pb-2 border-b border-slate-100">
+                  <span class="text-slate-600 font-medium">Stage</span>
+                  <span class="text-red-600 font-mono font-bold">Closed Lost</span>
+                </div>
+                <div class="flex justify-between text-sm pb-2 border-b border-slate-100">
+                  <span class="text-slate-600 font-medium">Amount</span>
+                  <span class="text-slate-900 font-mono font-semibold">$84,000</span>
+                </div>
+                <div class="flex justify-between text-sm pb-2 border-b border-slate-100">
+                  <span class="text-slate-600 font-medium">Close Date</span>
+                  <span class="text-slate-900 font-mono">2024-11-15</span>
+                </div>
+                <div class="flex justify-between text-sm pt-2">
+                  <span class="text-amber-600 font-mono font-bold">Account_ID</span>
+                  <span class="text-amber-600 font-mono font-bold">ACC-00391</span>
+                </div>
+              </div>
+              <div class="mt-5 p-3 rounded-lg bg-slate-50 border border-slate-200">
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  The deal record. Stage moves through pipeline. We filter for <strong class="text-slate-900">Closed Lost</strong>.
+                </p>
+              </div>
+            </div>
+
+            <!-- Competition -->
+            <div class="rounded-2xl border-2 border-slate-200 bg-white p-6 shadow-sm" style="border-top:4px solid #7c3aed">
+              <div class="text-xs font-bold uppercase tracking-wider mb-1" style="color:#7c3aed">Junction Object &middot; 2.3M Records</div>
+              <div class="text-xs text-slate-500 font-mono mb-3">CI_Opportunity_Competitor</div>
+              <h3 class="text-2xl font-bold mb-5" style="color:#7c3aed">Competition</h3>
+              <div class="space-y-4">
+                <div class="flex justify-between text-sm pb-2 border-b border-slate-100">
+                  <span class="text-slate-600 font-medium">Competitor</span>
+                  <span class="text-slate-900 font-mono text-xs">Rival Analytics Co.</span>
+                </div>
+                <div class="flex justify-between text-sm pb-2 border-b border-slate-100">
+                  <span class="text-slate-600 font-medium">Incumbent</span>
+                  <span class="text-slate-900 font-mono">No</span>
+                </div>
+                <div class="flex justify-between text-sm pb-2 border-b border-slate-100">
+                  <span class="text-red-600 font-mono font-bold">Leading</span>
+                  <span class="text-red-600 font-mono font-bold">Yes</span>
+                </div>
+                <div class="flex justify-between text-sm pb-2 border-b border-slate-100">
+                  <span class="text-slate-600 font-medium">Competitive Notes</span>
+                  <span class="text-slate-400 font-mono italic text-xs">4000 chars free text</span>
+                </div>
+                <div class="flex justify-between text-sm pt-2">
+                  <span class="text-slate-600 font-medium">Win/Loss Call</span>
+                  <span class="text-amber-600 font-mono font-bold">Flagged</span>
+                </div>
+              </div>
+              <div class="mt-5 p-3 rounded-lg bg-slate-50 border border-slate-200">
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Bridges Opportunity to Competitor catalog (908 known competitors). One deal can have <strong class="text-slate-900">multiple competitors</strong>. Required at Stage 3. <strong class="text-red-600">Leading</strong> flag = who won.
+                </p>
+              </div>
+            </div>
+
+            <!-- Account -->
+            <div class="rounded-2xl border-2 bg-white p-6 shadow-sm flex flex-col" style="border-top:4px solid #f59e0b;border-color:rgba(245,158,11,0.3)">
+              <div class="text-xs font-bold text-amber-600 uppercase tracking-wider mb-1">Object: Asset Line Items (Apttus CPQ)</div>
+              <h3 class="text-2xl font-bold text-amber-600 mb-4">Account + Usage</h3>
+              <div class="space-y-4 mb-5">
+                <div class="flex justify-between text-sm pb-2 border-b border-slate-100">
+                  <span class="text-slate-600 font-medium">Account</span>
+                  <span class="text-slate-900 font-mono font-semibold">Nexus Corp</span>
+                </div>
+                <div class="flex justify-between text-sm pb-2 border-b border-slate-100">
+                  <span class="text-slate-600 font-medium">Licensed Product</span>
+                  <span class="text-slate-900 font-mono">Sales Cloud</span>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-lg border border-amber-200 mb-4 space-y-1.5 font-mono text-[11px]" style="background-color:rgba(255,251,235,0.6)">
+                <div>
+                  <div class="text-slate-700">Licensed Seats <span class="text-slate-400">=</span> <span class="text-slate-900 font-bold">50</span></div>
+                  <div class="text-slate-400 text-[10px] pl-3">&rarr; MAX(asset_line_item.quantity)</div>
+                </div>
+                <div>
+                  <div class="text-slate-700">Active Users <span class="text-slate-400">=</span> <span class="text-red-600 font-bold">3 of 50</span></div>
+                  <div class="text-slate-400 text-[10px] pl-3">&rarr; COUNT(DISTINCT usage.user_id)</div>
+                </div>
+                <div>
+                  <div class="text-slate-700">Usage Rate <span class="text-slate-400">=</span> <span class="text-red-600 font-bold">6%</span></div>
+                  <div class="text-slate-400 text-[10px] pl-3">&rarr; Active / Licensed &times; 100</div>
+                </div>
+                <div>
+                  <div class="text-slate-700">Last Active <span class="text-slate-400">=</span> <span class="text-amber-600 font-bold">2024-09-02</span></div>
+                  <div class="text-slate-400 text-[10px] pl-3">&rarr; MAX(usage.event_ts)</div>
+                </div>
+              </div>
+
+              <div class="mt-auto p-3 rounded-lg bg-slate-50 border border-slate-200">
+                <p class="text-xs text-slate-600 leading-relaxed font-mono">
+                  Source path: Account &rarr; Asset Line Items &rarr; Child Usage Records<br />
+                  Join key: <strong class="text-amber-600">account_id</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4 pt-4">
+            <div class="p-4 rounded-xl bg-white border-2 border-slate-200 shadow-sm">
+              <div class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">The Source</div>
+              <div class="text-sm font-bold text-slate-900 mb-2">Extract from Snowflake</div>
+              <p class="text-[11px] text-slate-600 leading-relaxed font-mono">
+                Data already flows: Salesforce &rarr; Azure &rarr; Airflow &rarr; Snowflake. Query from there.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-amber-50 border-2 border-amber-200 shadow-sm">
+              <div class="text-[10px] font-bold text-amber-600 uppercase tracking-wider mb-2">First 30 Days</div>
+              <div class="text-sm font-bold text-amber-600 mb-2">Map the usage objects</div>
+              <p class="text-[11px] text-slate-700 leading-relaxed font-mono">
+                Which fields track usage? Logins, feature actions, API calls? Daily or weekly? Is there already a composite score downstream?
+              </p>
+            </div>
+            <div class="p-4 rounded-xl shadow-sm" style="background-color:rgba(46,132,74,0.05);border:2px solid rgba(46,132,74,0.2)">
+              <div class="text-[10px] font-bold uppercase tracking-wider mb-2" style="color:#2e844a">Then Build</div>
+              <div class="text-sm font-bold mb-2" style="color:#2e844a">Composite score + daily snapshots</div>
+              <p class="text-[11px] text-slate-700 leading-relaxed font-mono">
+                Derive usage metric from asset hierarchy. Build point-in-time history for the join. Define in semantic layer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: Architecture -->
+      <div class="slide hidden" id="slide-3">
+        <div class="space-y-4 animate-in">
+          <div class="flex items-end justify-between">
+            <div class="space-y-2">
+              <div class="inline-block px-3 py-1.5 rounded-lg text-xs font-bold tracking-wider uppercase" style="background-color:rgba(46,132,74,0.1);border:1px solid rgba(46,132,74,0.2);color:#2e844a">
+                Full Architecture
+              </div>
+              <h2 class="text-4xl font-bold leading-tight text-slate-900">
+                End-to-End <span style="color:#2e844a">Data Pipeline</span>
+              </h2>
+            </div>
+            <p class="text-slate-600 text-lg">From Three Salesforce Objects to Executive Insight</p>
+          </div>
+
+          <!-- Source Data Objects -->
+          <div class="flex items-center justify-center gap-4 p-5 rounded-xl bg-white border-2 border-slate-200 shadow-sm relative mt-2">
+            <div class="absolute -top-3 left-4 bg-white px-2 text-xs font-bold text-slate-500 uppercase tracking-wider">
+              Data Ingestion (The Source)
+            </div>
+            <div class="flex-1 p-4 rounded-lg flex flex-col items-center text-center" style="border:2px solid rgba(1,118,211,0.3);background-color:rgba(1,118,211,0.05)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0176d3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+              <span class="text-sm font-bold mb-1" style="color:#0176d3">Opportunity</span>
+              <span class="text-xs text-slate-600 font-mono">Stage, Amount, Close Date, Account_ID</span>
+            </div>
+            <div class="flex-1 p-4 rounded-lg flex flex-col items-center text-center" style="border:2px solid rgba(124,58,237,0.3);background-color:rgba(124,58,237,0.05)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+              <span class="text-sm font-bold mb-1" style="color:#7c3aed">Competition Junction</span>
+              <span class="text-xs text-slate-600 font-mono">Competitor, Incumbent, Leading Flag</span>
+            </div>
+            <div class="flex-1 p-4 rounded-lg bg-amber-50 flex flex-col items-center text-center" style="border:2px solid rgba(245,158,11,0.3)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+              <span class="text-sm font-bold text-amber-600 mb-1">Account + Usage</span>
+              <span class="text-xs text-slate-600 font-mono">Account &rarr; Asset Line Items &rarr; child usage objects</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-5 gap-4" id="arch-steps"></div>
+
+          <!-- Output row -->
+          <div class="p-3 rounded-xl bg-slate-50 border-2 border-slate-200 flex items-center justify-center gap-3 flex-wrap">
+            <div class="text-xs font-bold text-slate-600 uppercase tracking-wider whitespace-nowrap">Output: One Enriched Fact Table</div>
+            <div class="font-mono text-sm font-bold px-3 py-1 rounded-lg whitespace-nowrap" style="color:#2e844a;background-color:rgba(46,132,74,0.1)">competitive_deal_outcomes</div>
+            <div class="flex gap-1.5 flex-wrap" id="output-tags"></div>
+          </div>
+
+          <!-- Consumers -->
+          <div class="grid grid-cols-4 gap-4" id="arch-consumers"></div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: Integrity -->
+      <div class="slide hidden" id="slide-4">
+        <div class="space-y-6 animate-in">
+          <div class="space-y-3">
+            <div class="inline-block px-4 py-2 rounded-lg bg-red-100 border-2 border-red-300 text-red-700 text-xs font-bold tracking-wider uppercase">
+              Step 2 &middot; Data Integrity &mdash; Improving Accuracy
+            </div>
+            <h2 class="text-4xl font-bold leading-tight text-slate-900">
+              Raw Salesforce Data Has <span class="text-red-600">Real Problems.</span>
+            </h2>
+            <p class="text-lg text-slate-600">Here&rsquo;s How I Fix Them.</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div class="space-y-4">
+              <h3 class="text-sm font-bold uppercase tracking-wider text-slate-600 mb-4">Four Critical Issues</h3>
+              <div id="integrity-issues"></div>
+            </div>
+
+            <div class="space-y-5">
+              <div>
+                <h3 class="text-sm font-bold uppercase tracking-wider text-slate-600 mb-4">Systematic QA Layer &mdash; Runs Before Every Load</h3>
+                <div class="rounded-xl border-2 border-slate-200 bg-white overflow-hidden shadow-sm">
+                  <table class="w-full text-xs">
+                    <thead>
+                      <tr class="border-b-2 border-slate-200 bg-slate-50">
+                        <th class="text-left p-3 font-bold text-slate-700 uppercase tracking-wider">Check</th>
+                        <th class="text-left p-3 font-bold text-slate-700 uppercase tracking-wider">What It Validates</th>
+                        <th class="text-left p-3 font-bold text-slate-700 uppercase tracking-wider">On Fail</th>
+                      </tr>
+                    </thead>
+                    <tbody class="font-mono" id="qa-table-body"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="p-6 rounded-xl bg-red-50 border-2 border-red-200">
+                <div class="flex items-start gap-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-1"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+                  <div>
+                    <h4 class="text-base font-bold text-red-700 mb-2">Quality Gate</h4>
+                    <p class="text-sm text-slate-700 leading-relaxed">
+                      If any critical check fails, the pipeline <strong class="text-slate-900">stops</strong>. 
+                      We serve last known good data and alert the team. Bad data in a dashboard is worse than no update at all.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 rounded-lg text-xs font-semibold" style="background-color:rgba(46,132,74,0.1);border:2px solid rgba(46,132,74,0.2);color:#2e844a">&#128274; PII fields encrypted at rest</span>
+                <span class="px-4 py-2 rounded-lg text-xs font-semibold" style="background-color:rgba(46,132,74,0.1);border:2px solid rgba(46,132,74,0.2);color:#2e844a">&#128273; Role-based access controls</span>
+                <span class="px-4 py-2 rounded-lg text-xs font-semibold" style="background-color:rgba(46,132,74,0.1);border:2px solid rgba(46,132,74,0.2);color:#2e844a">&#128203; Audit log on every extraction</span>
+                <span class="px-4 py-2 rounded-lg text-xs font-semibold" style="background-color:rgba(46,132,74,0.1);border:2px solid rgba(46,132,74,0.2);color:#2e844a">&#9881;&#65039; Minimum-permission service accounts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5: Join Strategy -->
+      <div class="slide hidden" id="slide-5">
+        <div class="space-y-7 animate-in">
+          <div class="space-y-3">
+            <div class="inline-block px-4 py-2 rounded-lg bg-amber-100 border-2 border-amber-300 text-amber-700 text-xs font-bold tracking-wider uppercase">
+              Step 3 &middot; The Join Strategy
+            </div>
+            <h2 class="text-4xl font-bold leading-tight text-slate-900">
+              The Most Important Design Decision:
+              <br />
+              <span class="text-amber-600">Point-in-Time Joins</span>
+            </h2>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-amber-50 border-2 border-amber-200">
+            <div class="flex items-start gap-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-1"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+              <div>
+                <h3 class="font-bold text-amber-700 mb-3 text-lg">Why does timing matter?</h3>
+                <p class="text-slate-700 leading-relaxed text-base">
+                  A customer churned 3 months ago. Their usage today is <strong class="text-slate-900">0%</strong>. 
+                  But on the day the deal closed, their usage was <strong class="text-slate-900">18%</strong>. 
+                  If we join to today, every churned account looks the same&mdash;we learn nothing. 
+                  We need usage <em class="text-amber-700">as of the close date</em>, stored as a daily snapshot.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6">
+            <!-- Decision 1 -->
+            <div class="p-6 rounded-2xl border-2 border-slate-200 bg-white shadow-sm" style="border-top:4px solid #f59e0b">
+              <div class="text-xs font-bold text-amber-600 uppercase tracking-wider mb-3">Decision 1 &ndash; Critical</div>
+              <h3 class="text-xl font-bold mb-5 text-slate-900">Point-in-Time, Not Current State</h3>
+              <div class="grid grid-cols-2 gap-4 mb-5">
+                <div class="p-4 rounded-lg bg-red-50 border-2 border-red-200">
+                  <div class="text-xs font-bold text-red-600 uppercase mb-2">&#10007; Wrong Approach</div>
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    Join to <strong class="text-slate-900">current</strong> usage. Every churned customer shows 0%&mdash;tells you nothing.
+                  </p>
+                </div>
+                <div class="p-4 rounded-lg border-2" style="background-color:rgba(46,132,74,0.1);border-color:rgba(46,132,74,0.3)">
+                  <div class="text-xs font-bold uppercase mb-2" style="color:#2e844a">&#10003; Right Approach</div>
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    Join to usage <strong class="text-slate-900">as of close date</strong>. Daily snapshots via SCD Type 2.
+                  </p>
+                </div>
+              </div>
+              <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                <p class="text-xs text-slate-700 leading-relaxed font-mono">
+                  <strong class="text-slate-900">Example:</strong> Nexus Corp &ndash; deal closed Nov 15. Usage on Nov 15: <span class="text-red-600 font-bold">18%</span>. 
+                  Usage today: 0% (churned). Joining to today&rsquo;s data makes every churned account look identical.
+                </p>
+              </div>
+            </div>
+
+            <!-- Decision 2 -->
+            <div class="p-6 rounded-2xl border-2 border-slate-200 bg-white shadow-sm" style="border-top:4px solid #0176d3">
+              <div class="text-xs font-bold uppercase tracking-wider mb-3" style="color:#0176d3">Decision 2 &ndash; Important</div>
+              <h3 class="text-xl font-bold mb-5 text-slate-900">LEFT JOIN, Not INNER JOIN</h3>
+              <div class="grid grid-cols-2 gap-4 mb-5">
+                <div class="p-4 rounded-lg bg-red-50 border-2 border-red-200">
+                  <div class="text-xs font-bold text-red-600 uppercase mb-2">Inner Join</div>
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    Drops deals with no usage data. Biases analysis toward accounts we already monitored.
+                  </p>
+                </div>
+                <div class="p-4 rounded-lg border-2" style="background-color:rgba(46,132,74,0.1);border-color:rgba(46,132,74,0.3)">
+                  <div class="text-xs font-bold uppercase mb-2" style="color:#2e844a">Left Join</div>
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    Keeps ALL losses. NULL usage = tracking not configured = <strong class="text-slate-900">itself a risk signal</strong>.
+                  </p>
+                </div>
+              </div>
+              <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                <p class="text-xs text-slate-700 leading-relaxed font-mono">
+                  Surface blind spots, not just the accounts you were already watching.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result Row -->
+          <div class="p-6 rounded-xl border-2" style="background-color:rgba(46,132,74,0.05);border-color:rgba(46,132,74,0.3)">
+            <div class="text-xs font-bold uppercase tracking-wider mb-4" style="color:#2e844a">
+              Result &ndash; One Row per Deal-Competitor (OPP-0847 / Nexus Corp)
+              <span class="text-slate-600 normal-case ml-3 tracking-normal font-normal">
+                One deal may have 2&ndash;3 competitors. The <strong class="text-red-600">Leading</strong> flag identifies who won.
+              </span>
+            </div>
+            <div class="flex gap-1.5 items-center flex-nowrap">
+              <span class="px-2.5 py-1 rounded-md font-mono text-[11px] font-semibold whitespace-nowrap" style="background-color:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);color:#7c3aed">Leading: Rival Analytics Co.</span>
+              <span class="px-2.5 py-1 rounded-md font-mono text-[11px] font-semibold whitespace-nowrap" style="background-color:rgba(1,118,211,0.15);border:1px solid rgba(1,118,211,0.3);color:#0176d3">$84,000</span>
+              <span class="px-2.5 py-1 rounded-md font-mono text-[11px] font-semibold whitespace-nowrap" style="background-color:rgba(1,118,211,0.15);border:1px solid rgba(1,118,211,0.3);color:#0176d3">Close: Nov 15</span>
+              <span class="text-slate-400 font-bold text-sm">+</span>
+              <span class="px-2.5 py-1 rounded-md font-mono text-[11px] font-semibold bg-amber-100 border border-amber-300 text-amber-700 whitespace-nowrap">Usage @ Close: 18%</span>
+              <span class="px-2.5 py-1 rounded-md font-mono text-[11px] font-semibold bg-amber-100 border border-amber-300 text-amber-700 whitespace-nowrap">MAU: 3 of 50</span>
+              <span class="text-slate-400 font-bold text-sm">=</span>
+              <span class="px-2.5 py-1 rounded-md font-mono text-[11px] font-bold bg-red-100 border border-red-300 text-red-700 whitespace-nowrap">Tier: LOW</span>
+              <span class="px-2.5 py-1 rounded-md font-mono text-[11px] font-bold bg-red-100 border border-red-300 text-red-700 whitespace-nowrap">Risk: TRUE</span>
+              <span class="px-2.5 py-1 rounded-md font-mono text-[11px] font-bold bg-red-100 border border-red-300 text-red-700 whitespace-nowrap">Trend: &#8600; declining</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 6: Trends -->
+      <div class="slide hidden" id="slide-6">
+        <div class="space-y-6 animate-in">
+          <div class="space-y-3">
+            <div class="inline-block px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase" style="background-color:rgba(124,58,237,0.1);border:2px solid rgba(124,58,237,0.3);color:#7c3aed">
+              Why 12 Months Matters
+            </div>
+            <h2 class="text-4xl font-bold leading-tight text-slate-900">
+              Same Endpoint. <span style="color:#7c3aed">Three Different Problems.</span>
+            </h2>
+            <p class="text-lg text-slate-600 leading-relaxed">
+              A usage score of 18% at close means nothing without context. Was it always 18%? Did it used to be 70%? 
+              <strong class="text-slate-900"> The shape of the decline tells you what to do.</strong>
+            </p>
+          </div>
+
+          <div class="grid grid-cols-3 gap-6">
+            <!-- Pattern A -->
+            <div class="p-6 rounded-2xl border-2 border-slate-200 bg-white shadow-sm" style="border-top:4px solid #ef4444">
+              <div class="text-xs font-bold text-red-600 uppercase tracking-wider mb-4">Pattern A &ndash; Predictable Decline</div>
+              <div class="flex items-end gap-2 h-28 mb-5 px-2" id="chart-a"></div>
+              <h4 class="text-lg font-bold mb-3 text-slate-900">70% &rarr; 18% over 12 months</h4>
+              <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                Gradual disengagement. The warning was there for months. <strong class="text-slate-900">This loss was preventable.</strong>
+              </p>
+              <div class="p-4 rounded-lg bg-red-50 border border-red-200">
+                <p class="text-xs text-red-700 leading-relaxed font-semibold">
+                  <strong>Response:</strong> CS should have been alerted at month 6. Proactive intervention window was wide open.
+                </p>
+              </div>
+            </div>
+
+            <!-- Pattern B -->
+            <div class="p-6 rounded-2xl border-2 border-slate-200 bg-white shadow-sm" style="border-top:4px solid #7c3aed">
+              <div class="text-xs font-bold uppercase tracking-wider mb-4" style="color:#7c3aed">Pattern B &ndash; Never Adopted</div>
+              <div class="flex items-end gap-2 h-28 mb-5 px-2" id="chart-b"></div>
+              <h4 class="text-lg font-bold mb-3 text-slate-900">~20% the entire time</h4>
+              <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                Never got off the ground. Onboarding failure, not churn. <strong class="text-slate-900">Different root cause entirely.</strong>
+              </p>
+              <div class="p-4 rounded-lg border" style="background-color:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.3)">
+                <p class="text-xs leading-relaxed font-semibold" style="color:#7c3aed">
+                  <strong>Response:</strong> This is an onboarding problem. Fix the implementation process, not the retention process.
+                </p>
+              </div>
+            </div>
+
+            <!-- Pattern C -->
+            <div class="p-6 rounded-2xl border-2 border-slate-200 bg-white shadow-sm" style="border-top:4px solid #f59e0b">
+              <div class="text-xs font-bold text-amber-600 uppercase tracking-wider mb-4">Pattern C &ndash; Sudden Drop</div>
+              <div class="flex items-end gap-2 h-28 mb-5 px-2" id="chart-c"></div>
+              <h4 class="text-lg font-bold mb-3 text-slate-900">65% &rarr; 10% in 2 months</h4>
+              <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                Something specific happened. Champion left. Competitor demo. Support failure. <strong class="text-slate-900">Investigate immediately.</strong>
+              </p>
+              <div class="p-4 rounded-lg bg-amber-50 border border-amber-200">
+                <p class="text-xs text-amber-700 leading-relaxed font-semibold">
+                  <strong>Response:</strong> Pull the support tickets. Check if the champion is still there. This one has a specific cause.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-xl border-2" style="background-color:rgba(46,132,74,0.05);border-color:rgba(46,132,74,0.3)">
+            <p class="text-sm text-slate-700 leading-relaxed text-center">
+              <strong style="color:#2e844a">Implementation:</strong> Instead of joining to one snapshot at close, we pull a time series &ndash; monthly usage for the 12 months before 
+              <code class="px-2 py-1 rounded bg-slate-100 border border-slate-300 text-slate-900 font-mono text-xs mx-1">close_date</code>. 
+              This requires daily usage snapshots (SCD Type 2). The sparkline per account in the dashboard makes the pattern visible at a glance.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 7: Insights -->
+      <div class="slide hidden" id="slide-7">
+        <div class="space-y-7 animate-in">
+          <div class="space-y-3">
+            <div class="inline-block px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase" style="background-color:rgba(46,132,74,0.1);border:2px solid rgba(46,132,74,0.3);color:#2e844a">
+              Steps 4 + 5 &middot; Enrich &amp; Insight
+            </div>
+            <h2 class="text-4xl font-bold leading-tight text-slate-900">
+              Low Usage <span style="color:#2e844a">Predicts</span> Competitive Loss
+            </h2>
+          </div>
+
+          <!-- Enrichment Strip -->
+          <div class="flex gap-3 items-center p-5 rounded-xl border-2" style="background-color:rgba(124,58,237,0.05);border-color:rgba(124,58,237,0.3)">
+            <span class="text-xs font-bold uppercase tracking-wider whitespace-nowrap" style="color:#7c3aed">Step 4 &middot; Enrich</span>
+            <span class="text-sm text-slate-600">From the joined data we derive:</span>
+            <div class="flex gap-2 flex-wrap" id="enrich-tags"></div>
+          </div>
+
+          <!-- Key Metrics -->
+          <div class="grid grid-cols-3 gap-5" id="insight-metrics"></div>
+
+          <!-- 2x2 Matrix -->
+          <div>
+            <h3 class="text-lg font-bold text-slate-700 mb-4">Usage vs Competitive Loss Matrix</h3>
+            <div class="grid grid-cols-2 gap-5" id="insight-matrix"></div>
+            <p class="text-xs text-center text-slate-500 mt-4">
+              Numbers are modeled from pipeline design&mdash;in production, derived from actual data
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 8: Price Sensitive -->
+      <div class="slide hidden" id="slide-8">
+        <div class="space-y-7 animate-in">
+          <div class="space-y-3">
+            <div class="inline-block px-4 py-2 rounded-lg bg-amber-100 border-2 border-amber-300 text-amber-700 text-xs font-bold tracking-wider uppercase">
+              The Most Nuanced Quadrant
+            </div>
+            <h2 class="text-4xl font-bold leading-tight text-slate-900">
+              24% of Losses <span class="text-amber-600">Break the Pattern</span>
+            </h2>
+            <p class="text-lg text-slate-600">These Need Different Thinking</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6">
+            <!-- In Our Control -->
+            <div class="space-y-5">
+              <div class="inline-block px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider" style="background-color:rgba(46,132,74,0.1);border:2px solid rgba(46,132,74,0.3);color:#2e844a">
+                &#10003; In Our Control &ndash; We Can Fix This
+              </div>
+              <div class="space-y-4" id="price-in-control"></div>
+            </div>
+
+            <!-- Not in Our Control -->
+            <div class="space-y-5">
+              <div class="inline-block px-4 py-2 rounded-lg bg-slate-100 border-2 border-slate-300 text-slate-600 text-xs font-bold uppercase tracking-wider">
+                &#10007; Not In Our Control &ndash; Track &amp; Learn
+              </div>
+              <div class="p-5 rounded-xl border-2 border-slate-200 bg-white shadow-sm">
+                <h4 class="font-bold text-slate-900 mb-3">Vendor consolidation</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  CIO standardizing on Oracle/SAP. Product was fine. Politics won. Nothing we could have done&mdash;but we should track frequency by account size and region.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- What I'd Build -->
+          <div class="p-6 rounded-xl border-2" style="background-color:rgba(46,132,74,0.05);border-color:rgba(46,132,74,0.3)">
+            <div class="flex items-start gap-4 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2e844a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-1"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+              <h3 class="text-lg font-bold" style="color:#2e844a">What I&rsquo;d Build</h3>
+            </div>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Cross-reference <strong class="text-slate-900">loss reason classification from the Enrich step</strong> with this quadrant specifically. 
+              Surface: <em class="text-slate-900">&ldquo;Of the 24% of losses where usage was high, what are the top 3 loss reasons by ARR?&rdquo;</em> 
+              <br /><br />
+              The answer becomes a <strong style="color:#0176d3">product brief</strong>, a <strong class="text-amber-600">pricing review</strong>, 
+              and a <strong style="color:#2e844a">CSM model change</strong>. Three teams. Three fixes. Not just a number on a dashboard.
+              <br /><br />
+              And this is exactly the <strong class="text-slate-900">battlecard feedback loop</strong>&mdash;classified loss reasons flow back to update battlecard content, 
+              with quarterly sign-off to keep it fresh.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 9: Dashboard -->
+      <div class="slide hidden" id="slide-9">
+        <div class="space-y-6 animate-in">
+          <div class="space-y-3">
+            <div class="inline-block px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase" style="background-color:rgba(1,118,211,0.1);border:2px solid rgba(1,118,211,0.3);color:#0176d3">
+              Final Deliverable
+            </div>
+            <h2 class="text-3xl font-bold leading-tight text-slate-900">
+              Competitive Intelligence <span style="color:#0176d3">Dashboard</span>
+            </h2>
+          </div>
+
+          <div class="space-y-4">
+            <!-- Filter Bar -->
+            <div class="flex items-center justify-between p-4 rounded-xl bg-white border-2 border-slate-200 shadow-sm">
+              <span class="text-xs font-bold text-slate-600 uppercase tracking-wider">Competitive Intelligence Dashboard</span>
+              <div class="flex items-center gap-3">
+                <div class="flex gap-2">
+                  <button class="px-3 py-1 rounded-lg text-xs font-semibold border-2 text-white" style="background-color:#2e844a;border-color:#2e844a">All</button>
+                  <button class="px-3 py-1 rounded-lg text-xs font-semibold border-2 bg-white border-slate-300 text-slate-600 hover:border-slate-400">Rival Co.</button>
+                  <button class="px-3 py-1 rounded-lg text-xs font-semibold border-2 bg-white border-slate-300 text-slate-600 hover:border-slate-400">DataForce</button>
+                  <button class="px-3 py-1 rounded-lg text-xs font-semibold border-2 bg-white border-slate-300 text-slate-600 hover:border-slate-400">Competo</button>
+                </div>
+                <div class="h-6 w-px bg-slate-300"></div>
+                <span class="text-xs font-mono text-slate-500">Jan&ndash;Nov 2024</span>
+              </div>
+            </div>
+
+            <!-- KPIs -->
+            <div class="grid grid-cols-4 gap-4" id="dashboard-kpis"></div>
+
+            <!-- Charts -->
+            <div class="grid grid-cols-2 gap-5">
+              <!-- Loss Rate -->
+              <div class="p-5 rounded-xl bg-white border-2 border-slate-200 shadow-sm">
+                <h4 class="text-sm font-bold uppercase tracking-wider text-slate-600 mb-4">Loss Rate by Usage Tier</h4>
+                <div class="space-y-4" id="loss-rate-bars"></div>
+                <p class="text-sm font-bold text-center mt-5 text-slate-700">
+                  Accounts with &lt;30% usage are <span class="text-red-600">3.2&times;</span> more likely to churn
+                </p>
+              </div>
+
+              <!-- Competitor Win Rate -->
+              <div class="p-5 rounded-xl bg-white border-2 border-slate-200 shadow-sm">
+                <h4 class="text-sm font-bold uppercase tracking-wider text-slate-600 mb-4">Win Rate by Competitor</h4>
+                <div class="space-y-4" id="win-rate-bars"></div>
+                <div class="flex gap-4 justify-center mt-5 text-xs font-mono">
+                  <span class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-sm" style="background-color:#2e844a"></span>Won
+                  </span>
+                  <span class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-sm bg-red-500"></span>Lost
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table -->
+            <div class="p-5 rounded-xl bg-white border-2 border-slate-200 shadow-sm">
+              <h4 class="text-sm font-bold uppercase tracking-wider text-slate-600 mb-4">Accounts Requiring Action &ndash; Sorted by Renewal Date</h4>
+              <div class="overflow-auto">
+                <table class="w-full text-xs font-mono">
+                  <thead>
+                    <tr class="border-b-2 border-slate-200 bg-slate-50">
+                      <th class="text-left p-3 font-bold text-slate-600 uppercase tracking-wider">Account</th>
+                      <th class="text-left p-3 font-bold text-slate-600 uppercase tracking-wider">Segment</th>
+                      <th class="text-left p-3 font-bold text-slate-600 uppercase tracking-wider">Competitor</th>
+                      <th class="text-center p-3 font-bold text-slate-600 uppercase tracking-wider">Status</th>
+                      <th class="text-right p-3 font-bold text-slate-600 uppercase tracking-wider">Deal</th>
+                      <th class="text-center p-3 font-bold text-slate-600 uppercase tracking-wider">Usage</th>
+                      <th class="text-left p-3 font-bold text-slate-600 uppercase tracking-wider">Trend</th>
+                      <th class="text-left p-3 font-bold text-slate-600 uppercase tracking-wider">Renewal</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashboard-table-body"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Push/Pull Models -->
+            <div class="grid grid-cols-2 gap-5">
+              <div class="p-6 rounded-xl bg-amber-50 border-2 border-amber-200">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="w-12 h-12 rounded-xl bg-amber-100 border-2 border-amber-300 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
+                  </div>
+                  <h4 class="font-bold text-amber-700 text-lg">Push Model</h4>
+                </div>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                  Weekly Slack digests to CS team. Insights come to them&mdash;no login required. 
+                  Alert on threshold breaches (usage &lt;30% + renewal &lt;90d).
+                </p>
+              </div>
+
+              <div class="p-6 rounded-xl bg-blue-50 border-2 border-blue-200">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="w-12 h-12 rounded-xl bg-blue-100 border-2 border-blue-300 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0176d3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                  </div>
+                  <h4 class="font-bold text-lg" style="color:#0176d3">Pull Model</h4>
+                </div>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                  Tableau dashboard&mdash;filterable by region, competitor, time. Leadership uses this for strategic planning 
+                  and to identify systemic patterns.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl text-center border-2" style="background-color:rgba(46,132,74,0.05);border-color:rgba(46,132,74,0.3)">
+              <p class="text-base text-slate-700 leading-relaxed">
+                <strong style="color:#2e844a">Same principle as Part 1:</strong> Detect signal in data &rarr; clean &rarr; enrich &rarr; 
+                deliver to the right person with a clear call to action. <strong class="text-slate-900">Data that drives action before it&rsquo;s too late.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 10: Strategic Close -->
+      <div class="slide hidden" id="slide-10">
+        <div class="space-y-8 animate-in">
+          <div class="space-y-4">
+            <div class="inline-block px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase" style="background-color:rgba(46,132,74,0.1);border:2px solid rgba(46,132,74,0.3);color:#2e844a">
+              Strategic Value &middot; The Thread Across Both Parts
+            </div>
+            <h2 class="text-5xl font-bold leading-tight text-slate-900">
+              Infrastructure That
+              <br />
+              <span style="color:#2e844a">Earns Business Trust</span>
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-3 gap-6" id="strategic-stats"></div>
+
+          <div class="space-y-5">
+            <h3 class="text-xl font-bold text-slate-700">The Shift This Enables</h3>
+            <div class="space-y-4" id="strategic-shifts"></div>
+          </div>
+
+          <div class="p-6 rounded-2xl border-2" style="background-color:rgba(46,132,74,0.05);border-color:rgba(46,132,74,0.3)">
+            <p class="text-base text-slate-700 leading-relaxed">
+              <strong class="text-slate-900">The Thread Across Both Parts:</strong> The adoption alert pipeline (Part 1) and this CI pipeline (Part 2) follow the same architecture&mdash;detect a signal in data, clean it, enrich it, and deliver it to the right person with a clear call to action. At LinkedIn, the signal was low product adoption. Here, it&rsquo;s low usage predicting competitive loss. <em style="color:#2e844a">Different domain, same engineering. Same outcome: data that drives action before it&rsquo;s too late.</em>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 11: Summary -->
+      <div class="slide hidden" id="slide-11">
+        <div class="space-y-8 animate-in">
+          <div class="space-y-4">
+            <div class="inline-block px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase" style="background-color:rgba(1,118,211,0.1);border:2px solid rgba(1,118,211,0.3);color:#0176d3">
+              What This Pipeline Delivers
+            </div>
+            <h2 class="text-5xl font-bold leading-tight text-slate-900">
+              Accuracy. Speed. Security.
+              <br />
+              <span style="color:#0176d3">Built Into Every Step.</span>
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-3 gap-6">
+            <!-- Data Pipeline -->
+            <div class="p-6 rounded-2xl border-2 border-slate-200 bg-white shadow-sm" style="border-top:4px solid #0176d3">
+              <h3 class="text-xl font-bold mb-6" style="color:#0176d3">The Data Pipeline</h3>
+              <div class="space-y-5">
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">Accuracy</h4>
+                  <ul class="space-y-2 text-sm text-slate-600 leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>6-check QA layer validates every load</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>Quality gate stops bad data before dashboards</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>Point-in-time join prevents data leakage</span></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">Speed</h4>
+                  <ul class="space-y-2 text-sm text-slate-600 leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>Minimize latency from source to dashboard</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>Pre-aggregated summary tables for fast queries</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>Daily snapshots enable instant lookups</span></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">Security</h4>
+                  <ul class="space-y-2 text-sm text-slate-600 leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>PII encrypted at rest</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>Role-based access controls</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>Audit log on every extraction</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- User Experience -->
+            <div class="p-6 rounded-2xl border-2 border-slate-200 bg-white shadow-sm" style="border-top:4px solid #f59e0b">
+              <h3 class="text-xl font-bold text-amber-600 mb-6">The User Experience</h3>
+              <div class="space-y-5">
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">Quick Insight</h4>
+                  <ul class="space-y-2 text-sm text-slate-600 leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>KPI row answers the question in 3 seconds</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>At-risk accounts sorted by renewal date</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>12-month sparklines show trend at a glance</span></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">Filtering</h4>
+                  <ul class="space-y-2 text-sm text-slate-600 leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>One-click competitor filter</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>Segment and date range slicers</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>Custom views without SQL</span></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">Delivery</h4>
+                  <ul class="space-y-2 text-sm text-slate-600 leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>Tableau (pull &ndash; on-demand)</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>Slack digests (push &ndash; weekly)</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>CS alerts (proactive &ndash; threshold)</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>Agentforce (AI &ndash; semantic queries)</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Strategic Thread -->
+            <div class="p-6 rounded-2xl border-2 border-slate-200 bg-white shadow-sm" style="border-top:4px solid #2e844a">
+              <h3 class="text-xl font-bold mb-6" style="color:#2e844a">The Strategic Thread</h3>
+              <div class="space-y-5">
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">The Pattern</h4>
+                  <ul class="space-y-2 text-sm text-slate-600 leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>Part 1 (LIHA): signal &rarr; pipeline &rarr; delivery</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>Part 2 (CI): same pattern, different domain</span></li>
+                    <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">&bull;</span><span>One principle: detect, clean, enrich, deliver</span></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">The Shift</h4>
+                  <ul class="space-y-2 text-sm leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-red-600 font-bold mt-0.5">&bull;</span><span class="text-slate-600"><strong class="text-red-600">Before:</strong> &ldquo;We lost 108 deals to Rival Co.&rdquo;</span></li>
+                    <li class="flex items-start gap-2"><span class="font-bold mt-0.5" style="color:#2e844a">&bull;</span><span class="text-slate-600"><strong style="color:#2e844a">After:</strong> &ldquo;340 accounts at risk. Here are the names.&rdquo;</span></li>
+                  </ul>
+                </div>
+                <div class="pt-4 border-t-2 border-slate-200">
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">One Line</h4>
+                  <p class="text-base font-bold leading-relaxed" style="color:#2e844a">
+                    This isn&rsquo;t a reporting problem.
+                    <br />
+                    It&rsquo;s a revenue protection problem.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center p-6 rounded-xl bg-slate-50 border-2 border-slate-200">
+            <p class="text-sm text-slate-600">
+              Mohseen Kolhar &middot; Data Engineer, Competitive Intelligence &middot; <strong class="text-slate-900">Ready for Q&amp;A</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end slides container -->
+  </main>
+</div>
+
+<script>
+// Navigation
+let currentSlide = 0;
+const totalSlides = 12;
+
+function showSlide(n) {
+  document.querySelectorAll('.slide').forEach((s, i) => {
+    s.classList.toggle('hidden', i !== n);
+  });
+  document.getElementById('slideCounter').textContent = (n + 1) + ' / ' + totalSlides;
+  document.getElementById('prevBtn').disabled = n === 0;
+  document.getElementById('prevBtn').style.opacity = n === 0 ? '0.3' : '1';
+  document.getElementById('nextBtn').disabled = n === totalSlides - 1;
+  document.getElementById('nextBtn').style.opacity = n === totalSlides - 1 ? '0.3' : '1';
+}
+
+function nextSlide() { if (currentSlide < totalSlides - 1) { currentSlide++; showSlide(currentSlide); } }
+function prevSlide() { if (currentSlide > 0) { currentSlide--; showSlide(currentSlide); } }
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight') nextSlide();
+  if (e.key === 'ArrowLeft') prevSlide();
+});
+
+// Dynamically build repeated sections
+
+// Slide 0: Intro steps
+(function() {
+  const steps = [
+    { num: '1', label: 'Extract', sublabel: 'Salesforce Objects', color: '#0176d3' },
+    { num: '2', label: 'Integrity', sublabel: 'Clean + Validate', color: '#c23934' },
+    { num: '3', label: 'Join', sublabel: 'Point-in-Time', color: '#f59e0b' },
+    { num: '4', label: 'Enrich', sublabel: 'Derive + Classify', color: '#7c3aed' },
+    { num: '5', label: 'Insight', sublabel: 'Dashboard + Action', color: '#2e844a' },
+  ];
+  const icons = {
+    '1': '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/>',
+    '2': '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>',
+    '3': '<circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/>',
+    '4': '<path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>',
+    '5': '<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
+  };
+  const container = document.getElementById('intro-steps');
+  steps.forEach(s => {
+    container.innerHTML += `
+      <div class="group">
+        <div class="aspect-square rounded-2xl border-slate-200 bg-white p-6 flex flex-col items-center justify-center text-center hover:border-slate-300 hover:shadow-lg transition-all" style="border:3px solid #e2e8f0">
+          <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-3" style="background-color:${s.color}15">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="${s.color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icons[s.num]}</svg>
+          </div>
+          <div class="text-xl font-bold mb-1" style="color:${s.color}">${s.label}</div>
+          <div class="text-xs text-slate-500">${s.sublabel}</div>
+        </div>
+      </div>`;
+  });
+})();
+
+// Slide 3: Architecture steps
+(function() {
+  const steps = [
+    { num: '1', title: 'Extract', color: '#0176d3', items: ['Extract from Snowflake (existing EDW)', 'Store as raw tables \u2013 no transforms', 'Immutable audit trail preserved', '2 years of deal history + 2 years of usage snapshots'] },
+    { num: '2', title: 'QA + Integrity', color: '#c23934', items: ['Schema validation on every load', 'Range checks \u2013 flag invalid values', 'Dedup + format normalization', 'Quality gate \u2013 blocks bad data'] },
+    { num: '3', title: 'Join', color: '#f59e0b', items: ['LEFT JOIN on Account_ID', 'NULLs retained \u2013 they are signals', 'Historical snapshot, not current state'], pointInTime: "We capture usage as of the deal\u2019s close date \u2013 not today. A churned customer\u2019s usage is now 0%, which tells us nothing. We need what it was when the deal was active." },
+    { num: '4', title: 'Enrich', color: '#7c3aed', items: ['Usage tier: Low / Med / High', '12-month usage trend before loss', 'Days inactive + risk flag', 'Loss reason classification'] },
+    { num: '5', title: 'Insight', color: '#2e844a', items: ['Competitor win/loss scorecard', 'At-risk account table by renewal', 'Usage vs loss rate segmentation', 'CS alerts on threshold breaches'] },
+  ];
+  const container = document.getElementById('arch-steps');
+  steps.forEach(s => {
+    let pit = '';
+    if (s.pointInTime) {
+      pit = `<div class="mt-auto p-2 rounded" style="background-color:${s.color}15;border:1px solid ${s.color}30"><p class="text-[10px] text-slate-700 leading-relaxed"><strong style="color:${s.color}">Point-in-Time:</strong> ${s.pointInTime}</p></div>`;
+    }
+    container.innerHTML += `
+      <div class="space-y-3">
+        <div class="rounded-xl border-2 border-slate-200 bg-white p-4 h-full shadow-sm hover:shadow-md transition-shadow flex flex-col">
+          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Step ${s.num}</div>
+          <h3 class="text-lg font-bold mb-3" style="color:${s.color}">${s.title}</h3>
+          <ul class="space-y-2 mb-3 flex-1">
+            ${s.items.map(i => `<li class="text-xs text-slate-600 flex items-start gap-2 leading-relaxed"><span class="text-slate-400 mt-0.5 font-bold">&bull;</span><span>${i}</span></li>`).join('')}
+          </ul>
+          ${pit}
+        </div>
+      </div>`;
+  });
+
+  // Output tags
+  const tags = [
+    { label: 'Opportunity fields', color: '#0176d3' },
+    { label: 'Usage at close date', color: '#f59e0b' },
+    { label: 'Competitor resolved', color: '#7c3aed' },
+    { label: 'Loss reason classified', color: '#c23934' },
+    { label: 'Usage tier + Risk flag', color: '#2e844a' },
+    { label: '12-month trend', color: '#2e844a' },
+  ];
+  const tagContainer = document.getElementById('output-tags');
+  tags.forEach(t => {
+    tagContainer.innerHTML += `<span class="px-2.5 py-0.5 rounded-md font-mono text-xs font-semibold" style="background-color:${t.color}15;border:1px solid ${t.color}40;color:${t.color}">${t.label}</span>`;
+  });
+
+  // Consumers
+  const consumers = [
+    { title: 'Tableau', quote: 'Design for the decision, not the chart', desc: '\u201CPull\u201D model \u2013 on-demand scorecards and drill-downs', color: '#0176d3', icon: '<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>' },
+    { title: 'Agentforce', quote: 'AI is only trusted if definitions are precise', desc: 'Semantic layer as contract. AI needs precise definitions.', color: '#2e844a', icon: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>' },
+    { title: 'Slack Digests', quote: 'Dashboards die if no one opens them', desc: '\u201CPush\u201D model \u2013 weekly insights delivered proactively', color: '#7c3aed', icon: '<path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/>' },
+    { title: 'CS Alerts', quote: 'Best insight arrives before the problem', desc: 'Detect before loss (usage <30% + renewal <90d)', color: '#c23934', icon: '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/>' },
+  ];
+  const cContainer = document.getElementById('arch-consumers');
+  consumers.forEach(c => {
+    cContainer.innerHTML += `
+      <div class="p-4 rounded-xl border-2 border-slate-200 bg-white shadow-sm flex flex-col" style="border-top:4px solid ${c.color}">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background-color:${c.color}15">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${c.color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${c.icon}</svg>
+          </div>
+          <h4 class="text-sm font-bold" style="color:${c.color}">${c.title}</h4>
+        </div>
+        <div class="flex-1 flex flex-col justify-between">
+          <p class="text-xs text-slate-600 leading-relaxed mb-3 font-medium">${c.desc}</p>
+          <div class="p-2 rounded-lg bg-slate-50 border border-slate-200">
+            <p class="text-xs text-slate-500 italic leading-snug">"${c.quote}"</p>
+          </div>
+        </div>
+      </div>`;
+  });
+})();
+
+// Slide 4: Integrity issues + QA table
+(function() {
+  const issues = [
+    { num: '1', title: 'Competitor Accuracy', points: [
+      "Competitor is required at Stage 3 via the CI_Opportunity_Competitor junction (908-record catalog)",
+      "The issue isn\u2019t missing data \u2014 it\u2019s accuracy",
+      "Reps pick the wrong competitor or default to the obvious name",
+      "One deal can have multiple competitors; the Leading flag tracks who actually won",
+    ], fix: '\u2192 Validate against CI_Competitor catalog. Build on the existing zero-shot classification to improve entity resolution. Flag deals where Leading competitor changed post-close. Cross-check with Competitive_Notes text.' },
+    { num: '2', title: 'Duplicate Deal Records', points: [
+      "Each deal has a unique Opportunity ID. But duplicates appear from:",
+      "(a) Field updates between batch runs \u2014 rep corrects the Competitor after a debrief, creating a second version in the next extract",
+      "(b) Junction fan-out \u2014 one deal with 3 competitors in CI_Opportunity_Competitor becomes 3 rows after the join, tripling the ARR impact unless you aggregate correctly",
+      "If 30 of 108 losses are dupes, the scorecard is wrong",
+    ], fix: '\u2192 Group by Opportunity ID, keep latest timestamp, discard the rest.' },
+    { num: '3', title: 'Deriving Usage from Asset Hierarchy', points: [
+      "Usage isn\u2019t a stored field \u2014 it\u2019s derived from Account \u2192 Asset Line Items (Apttus) \u2192 child usage objects",
+      "Need to build a composite metric (license util + active users + feature adoption)",
+      "Validate for accounts where tracking isn\u2019t configured or assets are missing",
+    ], fix: '\u2192 Build the derivation as a transform step. Range-validate the composite output. NULL accounts with no asset data \u2014 flag in quality log.' },
+    { num: '4', title: 'Cross-System ID Resolution', points: [
+      "Salesforce IDs are consistent within the CRM (15/18 char)",
+      "When tables from different source systems land in Snowflake, the same customer can appear with different identifiers",
+      "Joins fail silently",
+    ], fix: '\u2192 Standardize IDs at the Snowflake layer before any joins. Map external IDs to Salesforce Account_ID as the canonical key.' },
+  ];
+  const container = document.getElementById('integrity-issues');
+  issues.forEach(issue => {
+    const bullets = issue.points.map(p => '<li class="text-xs text-slate-600 leading-relaxed flex items-start gap-1.5"><span class="text-slate-400 font-bold mt-px">&bull;</span><span>' + p + '</span></li>').join('');
+    container.innerHTML += `
+      <div class="p-4 rounded-xl border-2 border-slate-200 bg-white hover:border-slate-300 transition-all shadow-sm mb-4">
+        <div class="flex gap-3">
+          <div class="w-8 h-8 rounded-full bg-red-100 border-2 border-red-300 flex items-center justify-center text-red-700 font-mono text-sm font-bold flex-shrink-0 mt-0.5">${issue.num}</div>
+          <div class="flex-1">
+            <h3 class="text-sm font-bold mb-1.5 text-slate-900">${issue.title}</h3>
+            <ul class="space-y-1 mb-2">${bullets}</ul>
+            <p class="text-xs leading-relaxed font-mono font-semibold" style="color:#2e844a">${issue.fix}</p>
+          </div>
+        </div>
+      </div>`;
+  });
+
+  const qaRows = [
+    { check: 'Schema validation', validates: 'Expected columns exist, types correct', fail: 'Block entire load', color: 'red' },
+    { check: 'Completeness check', validates: 'Junction record exists for Closed Lost? Usage assets present?', fail: 'Log rate, flag, proceed', color: 'slate' },
+    { check: 'Usage derivation', validates: 'Asset hierarchy present? Composite score in valid range?', fail: 'NULL missing assets, log', color: 'amber' },
+    { check: 'Uniqueness', validates: 'Each Opportunity ID unique?', fail: 'Dedup \u2013 keep latest timestamp', color: 'slate' },
+    { check: 'Referential integrity', validates: 'Account_ID in Opp exists in Account?', fail: 'Log orphans, keep but flag', color: 'slate' },
+    { check: 'Format standardization', validates: 'Account_ID in consistent format?', fail: 'Normalize to standard', color: 'slate' },
+  ];
+  const tbody = document.getElementById('qa-table-body');
+  qaRows.forEach(r => {
+    const failClass = r.color === 'red' ? 'color:#dc2626;font-weight:700' : r.color === 'amber' ? 'color:#d97706;font-weight:600' : 'color:#475569';
+    tbody.innerHTML += `
+      <tr class="border-b border-slate-100">
+        <td class="p-3 text-slate-700 font-semibold">${r.check}</td>
+        <td class="p-3 text-slate-500">${r.validates}</td>
+        <td class="p-3" style="${failClass}">${r.fail}</td>
+      </tr>`;
+  });
+})();
+
+// Slide 6: Chart bars
+(function() {
+  const chartA = [90, 80, 65, 50, 35, 22, 18];
+  const chartB = [22, 20, 22, 18, 21, 19, 20];
+  const chartC = [70, 68, 65, 62, 20, 13, 10];
+
+  function renderBars(containerId, values, colorFn) {
+    const c = document.getElementById(containerId);
+    values.forEach(val => {
+      const color = colorFn(val);
+      c.innerHTML += `<div class="flex-1 rounded-t-lg" style="height:${val}%;background-color:${color}"></div>`;
+    });
+  }
+
+  renderBars('chart-a', chartA, v => v > 60 ? '#2e844a' : v > 30 ? '#f59e0b' : '#c23934');
+  renderBars('chart-b', chartB, () => '#ef4444');
+  renderBars('chart-c', chartC, v => v > 60 ? '#2e844a' : '#c23934');
+})();
+
+// Slide 7: Insights
+(function() {
+  // Enrich tags
+  const enrichTags = ['Usage Tier (Low/Med/High)', 'Days Inactive', 'Risk Flag', 'Loss Reason', '12-mo Trend'];
+  const tagContainer = document.getElementById('enrich-tags');
+  enrichTags.forEach(t => {
+    tagContainer.innerHTML += `<span class="px-3 py-1 rounded-lg text-xs font-semibold" style="background-color:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);color:#7c3aed">${t}</span>`;
+  });
+
+  // Metrics
+  const metrics = [
+    { stat: '3.2\u00d7', desc: 'Accounts with <30% usage are 3.2\u00d7 more likely to churn to a competitor', color: '#c23934' },
+    { stat: '74d', desc: 'Average inactivity before loss. Signal visible 10+ weeks before renewal', color: '#f59e0b' },
+    { stat: '$4.2M', desc: 'ARR in the Sleeping Risk quadrant. Addressable by CS now', color: '#2e844a' },
+  ];
+  const mContainer = document.getElementById('insight-metrics');
+  metrics.forEach(m => {
+    mContainer.innerHTML += `
+      <div class="p-6 rounded-xl border-2 border-slate-200 bg-white shadow-sm" style="border-top:4px solid ${m.color}">
+        <div class="text-5xl font-bold mb-3" style="color:${m.color}">${m.stat}</div>
+        <p class="text-sm text-slate-600 leading-relaxed">${m.desc}</p>
+      </div>`;
+  });
+
+  // Matrix
+  const matrix = [
+    { quadrant: '\u26a0 Danger Zone', title: 'Lost + Low Usage', stat: '68%', desc: 'of all competitive losses had <30% usage before they left. The signal was there weeks earlier.', action: 'CS alert 90 days before renewal when usage drops below threshold', color: '#c23934' },
+    { quadrant: '$ Price Sensitive', title: 'Lost + High Usage', stat: '24%', desc: "Usage was healthy but they still left. This quadrant breaks the pattern\u2014usage wasn\u2019t the problem.", action: 'Cross-reference loss reason. Input for Product, Pricing, and Sales Ops', color: '#f59e0b' },
+    { quadrant: '\u23f8 Sleeping Risk', title: 'Retained + Low Usage', stat: '340', desc: "accounts haven\u2019t churned yet but look exactly like the ones that did. This is the $4.2M opportunity.", action: 'Proactive outreach NOW. 60\u201370% save rate with early intervention', color: '#7c3aed' },
+    { quadrant: '\u2605 Champions', title: 'Retained + High Usage', stat: '3.1\u00d7', desc: 'less likely to churn than low-usage accounts. Fully embedded in the product.', action: 'Expansion targets. Upsell conversations. Reference customers', color: '#2e844a' },
+  ];
+  const matrixContainer = document.getElementById('insight-matrix');
+  matrix.forEach(item => {
+    matrixContainer.innerHTML += `
+      <div class="p-6 rounded-xl border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow" style="border-top:4px solid ${item.color}">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider mb-2" style="color:${item.color}">${item.quadrant}</div>
+            <div class="text-base font-bold text-slate-900">${item.title}</div>
+          </div>
+          <div class="text-4xl font-bold" style="color:${item.color}">${item.stat}</div>
+        </div>
+        <p class="text-sm text-slate-600 leading-relaxed mb-4">${item.desc}</p>
+        <div class="p-3 rounded-lg border border-slate-200 bg-slate-50">
+          <p class="text-xs font-semibold leading-relaxed" style="color:${item.color}"><strong>Action:</strong> ${item.action}</p>
+        </div>
+      </div>`;
+  });
+})();
+
+// Slide 8: Price Sensitive - In Control
+(function() {
+  const items = [
+    { title: 'Price undercut', tag: 'Pricing Team', tagColor: '#f59e0b', desc: "Competitor offered 30% less. Customer was happy with the product but the economics didn\u2019t work. If this is concentrated in Mid-Market, the pricing tier may be wrong for that segment." },
+    { title: 'Feature parity crossed', tag: 'Product Team', tagColor: '#0176d3', desc: "Competitor shipped what was our differentiator. Now they\u2019re equal on capability and cheaper. This is a roadmap input\u2014not a dashboard metric." },
+    { title: 'Relationship failure', tag: 'Sales Ops', tagColor: '#2e844a', desc: 'Champion left the account. New decision-maker had a prior relationship with the competitor. CSM assignment model needs review.' },
+  ];
+  const container = document.getElementById('price-in-control');
+  items.forEach(item => {
+    container.innerHTML += `
+      <div class="p-5 rounded-xl border-2 border-slate-200 bg-white shadow-sm">
+        <div class="flex justify-between items-center mb-3">
+          <h4 class="font-bold text-slate-900">${item.title}</h4>
+          <span class="px-3 py-1 rounded-lg text-xs font-bold" style="background-color:${item.tagColor}15;border:2px solid ${item.tagColor}40;color:${item.tagColor}">${item.tag}</span>
+        </div>
+        <p class="text-sm text-slate-600 leading-relaxed">${item.desc}</p>
+      </div>`;
+  });
+})();
+
+// Slide 9: Dashboard
+(function() {
+  // KPIs
+  const kpis = [
+    { value: '247', label: 'Competitive Losses', change: '\u2191 18% YoY', color: '#c23934' },
+    { value: '61%', label: 'Had <30% Usage at Loss', change: 'vs 21% in retained', color: '#c23934' },
+    { value: '28%', label: 'Avg Usage at Loss', change: 'vs 71% in retained', color: '#f59e0b' },
+    { value: '$4.2M', label: 'ARR at Risk', change: '340 accounts addressable', color: '#2e844a' },
+  ];
+  const kpiContainer = document.getElementById('dashboard-kpis');
+  kpis.forEach(k => {
+    kpiContainer.innerHTML += `
+      <div class="p-5 rounded-xl bg-white border-2 border-slate-200 shadow-sm">
+        <div class="text-4xl font-bold mb-2" style="color:${k.color}">${k.value}</div>
+        <div class="text-xs uppercase tracking-wider text-slate-600 font-bold mb-1">${k.label}</div>
+        <div class="text-xs text-slate-500">${k.change}</div>
+      </div>`;
+  });
+
+  // Loss rate bars
+  const tiers = [
+    { label: 'Low <30%', value: 68, color: '#c23934' },
+    { label: 'Med 30\u201370%', value: 34, color: '#f59e0b' },
+    { label: 'High >70%', value: 18, color: '#2e844a' },
+  ];
+  const lossContainer = document.getElementById('loss-rate-bars');
+  tiers.forEach(t => {
+    lossContainer.innerHTML += `
+      <div>
+        <div class="flex justify-between text-sm mb-2">
+          <span class="text-slate-600 font-semibold">${t.label}</span>
+          <span class="font-mono font-bold" style="color:${t.color}">${t.value}%</span>
+        </div>
+        <div class="h-6 bg-slate-100 rounded-full overflow-hidden">
+          <div class="h-full rounded-full flex items-center px-3 text-xs font-bold text-white" style="width:${t.value}%;background-color:${t.color}">${t.value}%</div>
+        </div>
+      </div>`;
+  });
+
+  // Win rate bars
+  const comps = [
+    { name: 'Rival Analytics Co.', win: 45, lost: 55, amount: '$1.6M' },
+    { name: 'DataForce Pro', win: 47, lost: 53, amount: '$1.1M' },
+    { name: 'Competo', win: 54, lost: 46, amount: '$680K' },
+  ];
+  const winContainer = document.getElementById('win-rate-bars');
+  comps.forEach(c => {
+    winContainer.innerHTML += `
+      <div>
+        <div class="flex justify-between text-sm mb-2 font-mono">
+          <span class="text-slate-700 font-bold">${c.name}</span>
+          <span class="text-slate-600">${c.win}% &middot; ${c.amount} lost</span>
+        </div>
+        <div class="h-4 bg-slate-100 rounded-full overflow-hidden flex">
+          <div style="width:${c.win}%;background-color:#2e844a"></div>
+          <div style="width:${c.lost}%;background-color:#ef4444"></div>
+        </div>
+      </div>`;
+  });
+
+  // Table
+  const rows = [
+    { account: 'Nexus Corp', segment: 'Enterprise', competitor: 'Rival Co.', status: 'LOST', statusColor: 'red', deal: '$84K', usage: '18%', usageColor: 'red', trend: [90, 75, 60, 45, 30, 18], renewal: 'Jan 15', renewalColor: 'red' },
+    { account: 'Alpine Media', segment: 'Mid-Mkt', competitor: 'DataForce', status: 'LOST', statusColor: 'red', deal: '$120K', usage: '9%', usageColor: 'red', trend: [20, 18, 15, 12, 10, 9], renewal: 'Jan 22', renewalColor: 'red' },
+    { account: 'Orbit Labs', segment: 'Enterprise', competitor: 'Rival Co.', status: 'AT RISK', statusColor: 'amber', deal: '$92K', usage: '22%', usageColor: 'red', trend: [65, 60, 55, 50, 25, 22], renewal: 'Feb 01', renewalColor: 'amber' },
+    { account: 'Crestwood Inc', segment: 'SMB', competitor: 'Competo', status: 'WON', statusColor: 'green', deal: '$56K', usage: '71%', usageColor: 'green', trend: [60, 65, 68, 70, 72, 71], renewal: 'Mar 01', renewalColor: 'slate' },
+  ];
+  const tbody = document.getElementById('dashboard-table-body');
+  rows.forEach(r => {
+    const statusClasses = r.statusColor === 'red' ? 'background-color:#fee2e2;border:2px solid #fca5a5;color:#b91c1c' : r.statusColor === 'amber' ? 'background-color:#fef3c7;border:2px solid #fcd34d;color:#b45309' : 'background-color:rgba(46,132,74,0.1);border:2px solid rgba(46,132,74,0.3);color:#2e844a';
+    const usageColor = r.usageColor === 'red' ? '#dc2626' : '#2e844a';
+    const renewalColor = r.renewalColor === 'red' ? '#dc2626' : r.renewalColor === 'amber' ? '#d97706' : '#475569';
+    const trendBars = r.trend.map(v => {
+      const c = v > 60 ? '#2e844a' : v > 30 ? '#f59e0b' : '#c23934';
+      return `<div class="flex-1 rounded-t" style="height:${v}%;background-color:${c}"></div>`;
+    }).join('');
+    tbody.innerHTML += `
+      <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+        <td class="p-3 font-bold text-slate-900">${r.account}</td>
+        <td class="p-3 text-slate-600">${r.segment}</td>
+        <td class="p-3 text-slate-600">${r.competitor}</td>
+        <td class="text-center p-3"><span class="px-3 py-1 rounded-lg text-xs font-bold" style="${statusClasses}">${r.status}</span></td>
+        <td class="p-3 text-right font-bold text-slate-900">${r.deal}</td>
+        <td class="p-3 text-center font-bold" style="color:${usageColor}">${r.usage}</td>
+        <td class="p-3"><div class="flex items-end gap-1 h-6">${trendBars}</div></td>
+        <td class="p-3 font-bold" style="color:${renewalColor}">${r.renewal}</td>
+      </tr>`;
+  });
+})();
+
+// Slide 10: Strategic Close
+(function() {
+  const stats = [
+    { stat: '90 days', title: 'Predict Churn Before It Happens', desc: 'Usage drop below 30% triggers an automated CS alert 90 days before renewal. The pipeline turns a historical report into a forward-looking early warning system.', color: '#2e844a' },
+    { stat: '2 signals', title: 'Separate Price Loss from Engagement Loss', desc: "Price loss vs engagement loss require completely different responses. Product team gets roadmap input. Pricing team gets segment analysis. Sales Ops gets CSM assignment data. One pipeline, three actionable briefs.", color: '#f59e0b' },
+    { stat: '~23%', title: 'Projected Reduction in Competitive Churn', desc: "Proactive CS engagement on the 340 at-risk accounts could protect $2.5\u20133M of the $4.2M ARR at risk\u2014based on comparable intervention programs.", color: '#0176d3' },
+  ];
+  const sContainer = document.getElementById('strategic-stats');
+  stats.forEach(s => {
+    sContainer.innerHTML += `
+      <div class="p-6 rounded-2xl border-2 border-slate-200 bg-white shadow-sm">
+        <div class="text-4xl font-bold mb-4" style="color:${s.color}">${s.stat}</div>
+        <h3 class="text-lg font-bold text-slate-900 mb-3">${s.title}</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">${s.desc}</p>
+      </div>`;
+  });
+
+  const shifts = [
+    { icon: '\u2190', iconColor: '#c23934', title: 'Before: Reactive', desc: '\u201CWe lost 108 deals to Rival Co. last quarter.\u201D Reported after the fact. No usage context. No intervention window. Just a number on a slide.', titleColor: 'color:#475569' },
+    { icon: '\u2192', iconColor: '#2e844a', title: 'After: Predictive', desc: '\u201C340 accounts have <30% usage and renew within 90 days. Here are the names, competitors, and recommended actions.\u201D CS acts 10 weeks before the loss happens.', titleColor: 'color:#2e844a' },
+    { icon: '\u2191', iconColor: '#0176d3', title: 'The Principle', desc: "Moving from \u201Chere\u2019s what happened\u201D to \u201Chere\u2019s what\u2019s about to happen\u201D is the difference between a reporting function and a growth engine. This pipeline makes that shift.", titleColor: 'color:#0176d3' },
+  ];
+  const shiftContainer = document.getElementById('strategic-shifts');
+  shifts.forEach(s => {
+    shiftContainer.innerHTML += `
+      <div class="flex gap-4 p-5 rounded-xl border-2 border-slate-200 bg-white shadow-sm">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl font-bold flex-shrink-0" style="background-color:${s.iconColor}15;color:${s.iconColor}">${s.icon}</div>
+        <div class="flex-1">
+          <h4 class="text-base font-bold mb-2" style="${s.titleColor}">${s.title}</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">${s.desc}</p>
+        </div>
+      </div>`;
+  });
+})();
+
+// Init
+showSlide(0);
+</script>
+</body>
+</html>
